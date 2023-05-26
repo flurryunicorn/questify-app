@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #29b080;
+  --lightprimary-color: #2dc690;
+  --darkprimary-color: rgba(41, 176, 128, 0.2);
+  --grey-color: rgba(255, 255, 255, 0.4);
+  --focus-color: rgba(41, 176, 128, 0.4);
+  --focusbackground-color: #162724;
+  --secondary-color: #fff;
+  --footer-color: #9b9b9b;
+  --gradient-color-stops: rgb(27, 168, 116, 0.3) 0%, transparent 70%;
+  --light-gradient-color-stops: rgb(27, 168, 116, 0.1) 0%, transparent 70%;
+  --gradient-linear-stops: rgba(28, 28, 28, 1) 0%, #141414 100%;
+}

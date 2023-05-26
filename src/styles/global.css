@@ -1,0 +1,102 @@
+@font-face {
+  font-family: "PlusJakartaText";
+  font-style: bold;
+  font-weight: bold;
+  src: url("/fonts/webfonts/PlusJakartaText-Bold.otf") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "PlusJakartaText";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/webfonts/PlusJakartaText-Regular.otf") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "PlusJakartaText";
+  font-style: normal;
+  font-weight: light;
+  src: url("/fonts/webfonts/PlusJakartaText-Light.otf") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "PlusJakartaText";
+  /* height: 100vh; */
+  /* width: 100vw; */
+  overflow-x: hidden;
+  background-color: #030a13;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 1px;
+  z-index: 190;
+}
+::-webkit-scrollbar-button {
+  background-color: transparent;
+  height: 0;
+  z-index: 190;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 190;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  z-index: 190;
+}
+::-webkit-scrollbar-corner {
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 190;
+}
+::-webkit-resizer {
+  background-color: var(--primary-color);
+  z-index: 190;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  outline-width: 0;
+  outline-color: var(--focus-color);
+  -webkit-outline-width: 0;
+  -webkit-outline-color: var(--focus-color);
+  -moz-outline-width: 0;
+  -moz-outline-color: var(--focus-color);
+}
+
+.linearGradient {
+  background: linear-gradient(180deg, rgba(20, 61, 46, 0) 0%, #000905 71.35%);
+}
+
+*:focus {
+  outline: none;
+  -webkit-outline: none;
+  -moz-outline: none;
+}
+
+body {
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  body {
+    overflow-y: auto;
+  }
+}
