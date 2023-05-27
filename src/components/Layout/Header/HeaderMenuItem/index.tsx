@@ -1,5 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  startLoadingApp,
+  stopLoadingApp,
+} from "../../../../redux/slices/commonSlice";
+
 type HeaderMenuItemProps = {
   title: string;
   link: string;
@@ -8,10 +14,21 @@ type HeaderMenuItemProps = {
 };
 
 const HeaderMenuItem = (props: HeaderMenuItemProps) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const gotoLocation = async (link) => {
+    dispatch(startLoadingApp());
+    await navigate(link);
+    (res) => {
+      dispatch(stopLoadingApp());
+    };
+  };
+
   return (
     <div
       className={`flex flex-col 
-                   font-bold bg-gradient-to-r from-emerald-300 text-transparent to-cyan-300 bg-clip-text text-[20px] animate-gradient-x 
+                   font-bold bg-gradient-to-r from-emerald-300 text-transparent to-cyan-300 bg-clip-text text-[16px] animate-gradient-x 
                         sm:mr-5 custom-2xl:mr-10 xl:mr-5 lg:mr-10 font-500  justify-center items-center ${
                           props.active ? "text-[#29B080]" : "text-[#929298]"
                         } h-full cursor-pointer select-none`}
@@ -30,7 +47,14 @@ const HeaderMenuItem = (props: HeaderMenuItemProps) => {
           />
         </svg>
       </div>
-      {<div className="whitespace-nowrap">{props.title}</div>}
+      {
+        <div
+          className="whitespace-nowrap"
+          onClick={() => gotoLocation(props.link)}
+        >
+          {props.title}
+        </div>
+      }
     </div>
   );
 };

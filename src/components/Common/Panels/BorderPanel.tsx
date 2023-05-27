@@ -8,7 +8,7 @@ type BorderPanelType = {
 const BorderPanel = (props: BorderPanelType) => {
   return (
     <div
-      className={`w-full  border-[#132236] border bg-[#071018] rounded-lg ${
+      className={`w-full mt-4 border-[#132236] border bg-[#071018] rounded-lg ${
         props.style ? props.style : ""
       }`}
     >

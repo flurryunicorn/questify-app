@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { minifyAddress } from "../../../utils";
-import myImage from "./../../../../public/tetris.png";
 
 export interface LeaderBoardProps {
   simple: boolean;
@@ -121,7 +120,7 @@ const RecentScore = (props: LeaderBoardProps) => {
 
             <div className="w-[25px] h-[25px]">
               {" "}
-              <img src={myImage} alt="Tetris" />{" "}
+              <img src="/images/tetris.png" alt="Tetris" />{" "}
             </div>
             {/* <div className="w-[18%]">
               {calculateInterval(winner.updatedAt)} ago

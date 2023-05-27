@@ -4,6 +4,7 @@ import Tetris from "../pages/Tetris";
 import Betting from "../pages/Betting";
 import SubBettingPage from "../pages/Betting/SubBettingPage";
 import Profile from "../pages/Betting/Profile";
+import Quests from "../pages/Quests";
 
 const routes: RouteProps[] = [
   // {
@@ -25,6 +26,10 @@ const routes: RouteProps[] = [
   {
     element: <Profile />,
     path: "/profile",
+  },
+  {
+    element: <Quests />,
+    path: "/quests",
   },
 ];
 

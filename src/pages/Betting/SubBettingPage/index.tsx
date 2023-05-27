@@ -30,6 +30,8 @@ import LeaderScoreItem from "../../../components/Betting/LeaderScoreItem";
 import LeaderScoreList from "../../../components/Betting/LeaderScoreList";
 import { LEADER_ITEMS } from "../../../data";
 import { toast } from "react-toastify";
+import PointLeaderboard from "../../../components/Leaderboard/PointLeaderboard";
+
 const SubBettingPage = () => {
   const [loading, setIsloading] = useState(true);
   const [totalUser, setTotalUser] = useState(0);
@@ -202,46 +204,7 @@ const SubBettingPage = () => {
       {/* HERE RIGHT BAR */}
 
       <GeneralPanel style="xl:col-span-5 lg:col-span-5 md:col-span-1 col-span-1">
-        <BorderPanel style=" ">
-          <h1 className="text-[20px] mx-4 my-3 text-md  text-gray-200">
-            Leaderboard
-          </h1>
-          <GeneralMenu menuItems={LEADERBOARD_MENUITEMS} />
-          <div className="flex justify-between  pt-[30px] mb-3">
-            {sortedWinners.slice(0, 3).map((leaderItem, index) => (
-              <LeaderScoreItem
-                key={index}
-                {...{ ...leaderItem, no: index + 1 }}
-                style={{ height: "200px", flex: "1 1 auto" }} // Set a fixed height and flex properties
-              />
-            ))}
-          </div>
-          {LEADER_ITEMS.length > 3 && (
-            <div className="mt-[16px]">
-              {/* <LeaderList items={LEADER_ITEMS.slice(3, LEADER_ITEMS.length)} /> */}
-              <ul
-                className="w-full mt-4 border-t border-[#132236] py-2"
-                style={{ marginTop: "15px" }}
-              >
-                {sortedWinners.slice(3, 6).map((item, index) => (
-                  <LeaderScoreList
-                    key={index}
-                    {...{ ...item, no: index + 4 }}
-                  />
-                ))}
-              </ul>
-            </div>
-          )}
-          {/* <button
-    className="w-full text-[20px] font-500 text-[#FFFFFF] py-[8px] opacity-60 rounded-[5px]"
-    style={{
-      background:
-        "linear-gradient(90deg, rgba(22, 128, 60, 0.5) 0%, #87EEAB 100%)",
-    }}
-  >
-    Place bet
-  </button> */}
-        </BorderPanel>
+        <PointLeaderboard />
 
         {/* <div className="my-6 ml-2 relative">
           <img src="/images/betting/Group2.png" className="m-[-15px]" />
@@ -249,7 +212,7 @@ const SubBettingPage = () => {
         </div> */}
 
         <BorderPanel style="mt-[12px] relative">
-          <div className="flex h-34   overflow-hidden flex-row justify-between">
+          <div className="flex h-34 overflow-hidden flex-row justify-between">
             <div className="">
               <img
                 src="/images/betting/Group2.png"
