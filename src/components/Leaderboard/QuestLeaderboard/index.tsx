@@ -7,8 +7,10 @@ import { apiCaller } from "../../../utils/fetcher";
 import { setLeaderboard } from "../../../redux/slices/tetrisSlice";
 import LeaderScoreItem from "../../../components/Betting/LeaderScoreItem";
 import LeaderScoreList from "../../../components/Betting/LeaderScoreList";
+import LeaderXPItem from "../../Betting/LeaderXPItem";
 import { QUEST_LEADERBOARD_SUB_MENUITEMS } from "../../../data";
 import QuestBorderMenuItem from "../../Common/Menus/QuestBorderMenuItem";
+import LeaderXPList from "../../Betting/LeaderXPList";
 
 const QuestLeaderboard = () => {
   const dispatch = useDispatch();
@@ -38,7 +40,7 @@ const QuestLeaderboard = () => {
       tempWinners.showInfo.length > 0
     ) {
       tempWinners = [...tempWinners.showInfo].sort(
-        (a, b) => b.totalScore - a.totalScore
+        (a, b) => b.totalXP - a.totalXP
       );
 
       const sorted = tempWinners.map((winner, idx) => {
@@ -69,7 +71,7 @@ const QuestLeaderboard = () => {
       </div>
       <div className="flex justify-between  pt-[30px] mb-3">
         {sortedWinners.slice(0, 3).map((leaderItem, index) => (
-          <LeaderScoreItem
+          <LeaderXPItem
             key={index}
             {...{ ...leaderItem, no: index + 1 }}
             style={{ height: "200px", flex: "1 1 auto" }} // Set a fixed height and flex properties
@@ -84,7 +86,7 @@ const QuestLeaderboard = () => {
             style={{ marginTop: "15px" }}
           >
             {sortedWinners.slice(3, 6).map((item, index) => (
-              <LeaderScoreList key={index} {...{ ...item, no: index + 4 }} />
+              <LeaderXPList key={index} {...{ ...item, no: index + 4 }} />
             ))}
           </ul>
         </div>
