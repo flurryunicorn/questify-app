@@ -32,7 +32,6 @@ const QuestLeaderboard = () => {
   // console.log(tempWinners);
   useEffect(() => {
     let tempWinners = Object.assign({ ...winners });
-    console.log(tempWinners);
     if (
       Object.keys(tempWinners) &&
       Object.keys(tempWinners).indexOf("showInfo") > -1 &&
@@ -53,7 +52,6 @@ const QuestLeaderboard = () => {
         }
         return { ...winner, rank: idx + 1, rankRange };
       });
-      console.log(sorted);
       setSortedWinners(sorted);
       setIsloading(false);
     }

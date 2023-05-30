@@ -47,7 +47,6 @@ const SubBettingPage = () => {
     dispatch(setLeaderboard({ result: result.data.data }));
   };
   const fetchTotalUser = async () => {
-    console.log("kkkkk ");
     try {
       var result = await apiCaller.get("tetrises/fetchTotalUser");
       setTotalUser(result.data.data);
@@ -80,9 +79,7 @@ const SubBettingPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log("sdfsdfsd", winners);
     let tempWinners = Object.assign({ ...winners });
-    console.log(tempWinners);
     if (
       Object.keys(tempWinners) &&
       Object.keys(tempWinners).indexOf("showInfo") > -1 &&
@@ -103,7 +100,6 @@ const SubBettingPage = () => {
         }
         return { ...winner, rank: idx + 1, rankRange };
       });
-      console.log(sorted);
       setSortedWinners(sorted);
       setIsloading(false);
     }
@@ -151,7 +147,8 @@ const SubBettingPage = () => {
                 <div
                   className="bg-[#29B080] text-black rounded-[20px] w-[80px] h-[30px] cursor-pointer text-[16px] flex items-center justify-center"
                   onClick={() =>
-                    (window.location.href = "https://tetrisk-questify.web.app")
+                    (window.location.href =
+                      "https://game-questify-tetrisk.web.app")
                   }
                 >
                   Play

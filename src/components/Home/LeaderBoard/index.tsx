@@ -13,7 +13,6 @@ function calculateInterval(updatedTime) {
   const updatedTime1 = new Date(updatedTime);
   // Calculate the difference in milliseconds
   const diffMs = now.getTime() - updatedTime1.getTime();
-  console.log(diffMs);
 
   // Convert milliseconds to days, hours, minutes, and seconds
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
@@ -42,7 +41,6 @@ const LeaderBoard = (props: LeaderBoardProps) => {
 
   useEffect(() => {
     let tempWinners = Object.assign({ ...winners });
-    console.log(tempWinners);
     if (
       Object.keys(tempWinners) &&
       Object.keys(tempWinners).indexOf("showInfo") > -1 &&
@@ -63,7 +61,6 @@ const LeaderBoard = (props: LeaderBoardProps) => {
         }
         return { ...winner, rank: idx + 1, rankRange };
       });
-      console.log(sorted);
       setSortedWinners(sorted);
     }
   }, [winners]);

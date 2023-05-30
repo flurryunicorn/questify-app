@@ -149,9 +149,9 @@ const Tetris = () => {
     const nextLevel = level + 1;
     const nextLevelScore =
       (levelBaseScore * nextLevel * nextLevel * nextLevel) / 5;
-    console.log("Current level: ", level);
-    console.log("Score to next level:", nextLevelScore);
-    console.log("Remaining: ", nextLevelScore - score);
+    // console.log("Current level: ", level);
+    // console.log("Score to next level:", nextLevelScore);
+    // console.log("Remaining: ", nextLevelScore - score);
     if (score >= nextLevelScore) setLevel(level + 1);
   }, [level, score]);
 

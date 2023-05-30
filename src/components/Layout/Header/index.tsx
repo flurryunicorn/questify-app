@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setLeaderboard,
   setMyBalance,
+  setMyInfo,
+  setMyXP,
 } from "../../../redux/slices/tetrisSlice";
 import {
   WalletConnectButton,
@@ -17,16 +19,10 @@ import {
 import { calculateFee, GasPrice } from "@cosmjs/stargate";
 import { apiCaller } from "../../../utils/fetcher";
 import LogoComp from "../LogoComp";
-import { SmallButton } from "../../Common/Buttons";
-import { PrimaryButton } from "../../Common/Buttons";
-
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import CircularProgress from "@mui/material/CircularProgress";
-
 import HeaderMenuItem from "./HeaderMenuItem";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -59,15 +55,6 @@ const Header = () => {
   const [success, setSuccess] = React.useState(false);
   const timer = React.useRef<number>();
 
-  // const buttonSx = {
-  //   ...(success && {
-  //     bgcolor: green[500],
-  //     "&:hover": {
-  //       bgcolor: green[700],
-  //     },
-  //   }),
-  // };
-
   React.useEffect(() => {
     return () => {
       clearTimeout(timer.current);
@@ -93,8 +80,6 @@ const Header = () => {
       connect(connected);
     }
   }, []);
-
-  console.log("asdfasdfa", connected);
 
   const { balance } = useSelector((state: any) => ({
     balance: state.tetris.balance,
@@ -139,7 +124,7 @@ const Header = () => {
 
   const sendToken = async (amount: number) => {
     if (!signingClient || !accounts) {
-      console.log("Wallet is not connected");
+      // console.log("Wallet is not connected");
       return;
     }
     if (sending) {
@@ -149,7 +134,6 @@ const Header = () => {
     setSending(true);
     const fee = calculateFee(150000, GasPrice.fromString("3750usei"));
     const transferAmount = { amount: (amount * 1e6).toString(), denom: "usei" };
-    console.log("here");
 
     try {
       const sendResponse = await signingClient.sendTokens(
@@ -158,7 +142,7 @@ const Header = () => {
         [transferAmount],
         fee
       );
-      console.log("sendResponse", sendResponse);
+      // console.log("sendResponse", sendResponse);
       if (sendResponse.transactionHash) {
         localStorage.setItem("txHash", sendResponse.transactionHash);
 
@@ -168,16 +152,14 @@ const Header = () => {
             txHash: sendResponse.transactionHash,
             amount: amount,
           });
-          console.log(result.data);
+          // console.log(result.data);
           dispatch(
             setMyBalance({ balance: result.data.existingUser.totalBalance })
           );
+
           handleClose();
           setDepositAmount(0);
         } catch (err: any) {
-          // if (err.response.data.message == "Rate limit") {
-          //   alert("Rate limit");
-          // }
           throw new Error();
         }
       } else {
@@ -187,7 +169,7 @@ const Header = () => {
       setSending(false);
       return true;
     } catch (err) {
-      console.log("Error occurred in sending token", err);
+      // console.log("Error occurred in sending token", err);
       localStorage.removeItem("txHash");
       setSending(false);
       return false;
@@ -199,16 +181,21 @@ const Header = () => {
       var result = await apiCaller.post("tetrises/getMyInfo", {
         wallet,
       });
-      console.log("ssdfd", result.data.data.totalBalance);
+      // console.log("ssdfd", result.data.data.totalBalance);
       dispatch(setMyBalance({ balance: result.data.data.totalBalance }));
+      dispatch(setMyInfo({ myInfo: result.data.data }));
+      dispatch(setMyXP({ myXP: result.data.data.totalXP }));
+      console.log("RESULT", result, typeof result.data.data.totalXP);
     }
   };
 
   useEffect(() => {
     if (connectedWallet) {
       localStorage.setItem("connectedWallet", connectedWallet);
+      localStorage.setItem("connectedAddress", accounts[0].address);
     } else {
       localStorage.removeItem("connectedWallet");
+      localStorage.removeItem("connectedAddress");
     }
   }, [connectedWallet]);
 
@@ -236,9 +223,6 @@ const Header = () => {
               w-full flex-row
             "
       >
-        {/* custom-2xl:px-[56px] xl:px-[25px] lg:px-[56px] md:px-[25px] sm:px-[20px] xs:px-[24px] */}
-
-        {/* Logo */}
         <div className="flex flex-row">
           <div
             className="flex w-20 h-20 justify-center border border-1 border-[#272829]"
@@ -267,8 +251,6 @@ const Header = () => {
           )}
         </div>
 
-        {/* Menu Items */}
-
         <div
           className="flex
                             custom-2xl:flex-row xl:flex-row lg:flex-row md:flex-row sm:flex-row xs:flex-row
@@ -279,37 +261,20 @@ const Header = () => {
             {connected && (
               <div
                 className="pr-2 h-[35px] rounded-lg flex justify-center items-center 
-		text-[#929298] text-lg cursor-pointer m-4 border border-[#14B8A6] hover:text-white "
+		            text-[#929298] text-lg cursor-pointer m-4 border border-[#14B8A6] hover:text-white "
                 onClick={handleOpen}
               >
                 <img
                   src="/images/logo2.png"
                   className="mx-[6px] w-[20px] h-[20px]"
                 />
-                {/* {"| "} */}
-                <p className="md:text-[12px] text-[10px]">{balance}</p>
+                <p className="sm:text-[12px] text-[10px] flex items-center">
+                  {Math.floor(Number(balance) * 10000) / 10000}
+                </p>
               </div>
             )}
-            {/* <div className="wallet-adapter-button-trigger">
-              <WalletConnectButton
-                buttonStyles={{
-                  walletSelectStyles: {
-                    background: { backgroundColor: "transparent" },
-                    card: {
-                      backgroundColor: "white",
-                      float: "right",
-                      marginTop: "70px",
-                    },
-                  },
-                }}
-                buttonClassName="wallet-adapter-button"
-              />
-            </div> */}
 
-            <div
-              className="flex wallet-adapter-button justify-end items-center mr-4"
-              // style={{ margin: "35px 42px" }}
-            >
+            <div className="flex wallet-adapter-button justify-end items-center mr-4">
               {connectedWallet != ("keplr" as WalletWindowKey) ? (
                 <div className="flex items-center justify-center ">
                   <div
@@ -319,14 +284,6 @@ const Header = () => {
                         toast.warn("Please install keplr extension");
                       } else {
                         connect("keplr");
-                        // (window as any).keplr.enable('atlantic-2');
-                        // const address = await (window as any)
-                        //   .getOfflineSigner("atlantic-2")
-                        //   .getAccounts();
-                        // console.log(address[0].address);
-                        // setMyAddress(address[0].address);
-                        // dispatch(setConnectionState({ state: !connectionState }));
-                        // dispatch(setMyWalletAddress({ address: address[0].address }));
                       }
                     }}
                   >
@@ -354,7 +311,17 @@ const Header = () => {
               )}
             </div>
 
-            {/* For Test */}
+            {/* <div className="flex flex-row items-center md:justify-end sm:justify-end">
+              <div
+                className="pr-2 h-[35px] rounded-lg flex justify-center items-center 
+		                      text-[#929298] text-lg cursor-pointer m-4 border border-[#14B8A6] hover:text-white "
+              >
+                <img
+                  src="/images/logo2.png"
+                  className="mx-[6px] w-[20px] h-[20px]"
+                />
+              </div>
+            </div> */}
 
             <Modal
               open={open}
@@ -476,13 +443,13 @@ const Header = () => {
                             amount: withdrawAmount,
                           }
                         );
-                        console.log(result.data);
+                        // console.log(result.data);
                         await getMyInfo(accounts[0].address);
 
                         setSending(false);
                         handleClose();
                       } catch (err) {
-                        console.log(err);
+                        // console.log(err);
                         setSending(false);
                         toast.warn("error");
                         return;

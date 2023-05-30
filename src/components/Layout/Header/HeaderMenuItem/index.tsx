@@ -10,7 +10,6 @@ type HeaderMenuItemProps = {
   title: string;
   link: string;
   active: boolean;
-  // onClick: void
 };
 
 const HeaderMenuItem = (props: HeaderMenuItemProps) => {
@@ -28,10 +27,10 @@ const HeaderMenuItem = (props: HeaderMenuItemProps) => {
   return (
     <div
       className={`flex flex-col 
-                   font-bold bg-gradient-to-r from-emerald-300 text-transparent to-cyan-300 bg-clip-text text-[16px] animate-gradient-x 
-                        sm:mr-5 custom-2xl:mr-10 xl:mr-5 lg:mr-10 font-500  justify-center items-center ${
-                          props.active ? "text-[#29B080]" : "text-[#929298]"
-                        } h-full cursor-pointer select-none`}
+                  font-bold bg-gradient-to-r from-emerald-300 text-transparent to-cyan-300 bg-clip-text text-[16px] animate-gradient-x 
+                  sm:mr-5 custom-2xl:mr-10 xl:mr-5 lg:mr-10 font-500  justify-center items-center 
+                  ${props.active ? "text-[#29B080]" : "text-[#929298]"} 
+                  h-full cursor-pointer hover:text-[#29B080] select-none`}
     >
       <div className={`absolute top-[0] ${props.active ? "block" : "hidden"}`}>
         <svg

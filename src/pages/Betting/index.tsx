@@ -77,9 +77,7 @@ const Betting = () => {
   let tempWinners = Object.assign({ ...winners });
   // console.log(tempWinners);
   useEffect(() => {
-    console.log("sdfsdfsd", winners);
     let tempWinners = Object.assign({ ...winners });
-    console.log(tempWinners);
     if (
       Object.keys(tempWinners) &&
       Object.keys(tempWinners).indexOf("showInfo") > -1 &&
@@ -100,7 +98,6 @@ const Betting = () => {
         }
         return { ...winner, rank: idx + 1, rankRange };
       });
-      console.log(sorted);
       setSortedWinners(sorted);
       setIsloading(false);
     }

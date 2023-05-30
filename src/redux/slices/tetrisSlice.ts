@@ -2,12 +2,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface TetrisState {
     winners: any[];
-    balance: number
+    balance: number;
+    myInfo:object;
+    myXP:number;
 }
 
 const initialState: TetrisState = {
     winners: [],
-    balance: 0
+    balance: 0,
+    myInfo:{},
+    myXP:0,
+
 }
 
 export const tetrisSlice = createSlice({
@@ -20,13 +25,23 @@ export const tetrisSlice = createSlice({
         },
         setMyBalance: (state, action: PayloadAction<any>) => {
             state.balance = action.payload.balance;
+        },        
+        setMyInfo: (state, action: PayloadAction<any>) => {
+            state.myInfo = action.payload.myInfo;
         },
+        setMyXP: (state, action: PayloadAction<any>) => {
+            state.myXP = action.payload.myXP;
+        },
+
     },
 })
 
 export const {
   setLeaderboard,
-  setMyBalance
+  setMyBalance,
+  setMyInfo,
+  setMyXP,
+
 } = tetrisSlice.actions
 
 export default tetrisSlice.reducer

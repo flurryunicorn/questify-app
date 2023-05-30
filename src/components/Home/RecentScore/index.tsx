@@ -12,7 +12,6 @@ function calculateInterval(updatedTime) {
   const updatedTime1 = new Date(updatedTime);
   // Calculate the difference in milliseconds
   const diffMs = now.getTime() - updatedTime1.getTime();
-  console.log(diffMs);
 
   // Convert milliseconds to days, hours, minutes, and seconds
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
@@ -46,7 +45,6 @@ const RecentScore = (props: LeaderBoardProps) => {
       Object.keys(tempWinners).indexOf("tetrisInfo") > -1 &&
       tempWinners.tetrisInfo.length > 0
     ) {
-      console.log(new Date(tempWinners.tetrisInfo[0].updatedAt).getTime());
       let temp = [...tempWinners.tetrisInfo].sort(
         (a, b) =>
           new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()

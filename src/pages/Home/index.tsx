@@ -10,7 +10,11 @@ import Input from "../../components/Common/Forms/Input";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ACTIONS from "../../config/actions";
-import { setLeaderboard, setMyBalance } from "../../redux/slices/tetrisSlice";
+import {
+  setLeaderboard,
+  setMyBalance,
+  setMyInfo,
+} from "../../redux/slices/tetrisSlice";
 import LeaderBoard from "../../components/Home/LeaderBoard";
 import RecentScore from "../../components/Home/RecentScore";
 import { apiCaller } from "../../utils/fetcher";
@@ -94,7 +98,7 @@ const Home = () => {
             txHash: sendResponse.transactionHash,
             amount: amount,
           });
-          console.log(result.data);
+          // console.log(result.data);
           dispatch(
             setMyBalance({ balance: result.data.existingUser.totalBalance })
           );
@@ -113,7 +117,7 @@ const Home = () => {
       setSending(false);
       return true;
     } catch (err) {
-      console.log("Error occurred in sending token", err);
+      // console.log("Error occurred in sending token", err);
       localStorage.removeItem("txHash");
       setSending(false);
       return false;
@@ -125,8 +129,10 @@ const Home = () => {
       var result = await apiCaller.post("tetrises/getMyInfo", {
         wallet,
       });
-      console.log("ssdfd", result.data.data.totalBalance);
+      console.log("🙌", result.data.data);
+      // console.log("ssdfd", result.data.data.totalBalance);
       dispatch(setMyBalance({ balance: result.data.data.totalBalance }));
+      dispatch(setMyInfo({ myInfo: result.data.data }));
     }
   };
 
@@ -182,7 +188,6 @@ const Home = () => {
     p: 4,
   };
 
-  console.log("LOCALSTORAGE::::", localStorage);
   return (
     <div className="">
       <GeneralModal
@@ -258,7 +263,7 @@ const Home = () => {
           }
           setSending(true);
           if (!signingClient || !accounts) {
-            console.log("Wallet is not connected");
+            // console.log("Wallet is not connected");
             return;
           }
 

@@ -439,56 +439,60 @@ export const EXPLORE_BANNER_SLIDES: SliderType[] = [
   },
 ];
 
-export const SOLARITY_QUESTS: QuestBoxType[] = [
+[
+  [0, 1, 0, 1, 1, 0],
+  [0, 1, 0, 0, 0, 0],
+];
+
+export const QUESTIFY_QUESTS: QuestBoxType[] = [
   {
-    title: "Discord",
-    subTitle: "Join the DAO",
-    description: "Play Head Bone today to earn more Mana!",
+    active: 1,
+    title: "Daily Quest",
+    subTitle: "Daily Quests",
+    description: "Play Game EveryDay",
     avatar: "/images/quests/avatars/discord.png",
     icon: "/images/wallets/xp.png",
     amount: 100,
     thumbnail: "/images/quests/solarity-quests/solarity-discord.png",
   },
   {
-    title: "Mint Room",
-    subTitle: "Mint Room",
-    description: "Play Head Bone today to earn more Mana!",
+    title: "x10 Play",
+    subTitle: "x10 Play",
+    description: "Play 10 times",
     avatar: "/images/social/twitter.png",
     icon: "/images/wallets/xp.png",
     amount: 100,
     thumbnail: "/images/quests/solarity-quests/mint-room.png",
   },
   {
-    title: "Extension",
-    subTitle: "Games. Everywhere",
-    description: "Play Head Bone today to earn more Mana!",
+    active: 1,
+    title: "Win Game",
+    subTitle: "Win Game",
+    description: "Win the Game for the first time",
     avatar: "/images/quests/avatars/extension.png",
     icon: "/images/wallets/xp.png",
     amount: 100,
     thumbnail: "/images/quests/solarity-quests/extension.png",
   },
   {
-    title: "Prompt",
-    subTitle: "Get inspired",
-    description: "Play Head Bone today to earn more Mana!",
+    active: 2,
+    title: "x5 Win",
+    subTitle: "x5 Win",
+    description: "Win the Game 5 times",
     avatar: "/images/quests/avatars/prompt.png",
     icon: "/images/wallets/xp.png",
     amount: 100,
     thumbnail: "/images/quests/solarity-quests/prompt.png",
   },
-  {
-    // active: true,
-    title: (
-      <span>
-        Claim your <span className="text-primary">WL!</span>
-      </span>
-    ),
-    subTitle: <span className="text-[#D886FF]">Congrats!</span>,
-    description: "You won a room, customize it now!",
-    avatar: "/images/quests/avatars/discord.png",
-    isAvatar: true,
-    icon: "/images/wallets/xp.png",
-    amount: 100,
-    thumbnail: "/images/quests/solarity-quests/final.png",
-  },
+  // {
+  //   // active: true,
+  //   title: "Deposit",
+  //   subTitle: <span className="text-[#D886FF]">Deposit</span>,
+  //   description: "You Deposited for the first time",
+  //   avatar: "/images/quests/avatars/discord.png",
+  //   isAvatar: true,
+  //   icon: "/images/wallets/xp.png",
+  //   amount: 100,
+  //   thumbnail: "/images/quests/solarity-quests/final.png",
+  // },
 ];
