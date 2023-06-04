@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { minifyString } from "../../../utils";
 import { PrimaryButton } from "../../../components/Common/Buttons";
 import { apiCaller } from "../../../utils/fetcher";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setMyXP } from "../../../redux/slices/tetrisSlice";
 export type QuestBoxType = {
   index?: number;
@@ -18,36 +18,79 @@ export type QuestBoxType = {
   thumbnail: string;
   onClick?: Function;
   buttonCaption?: string;
+  fullDescription?: string;
+  untilClaim?: number;
 };
 
+import {
+  setModalOpen,
+  setClickedCardNum,
+} from "../../../redux/slices/tetrisSlice";
+
 const QuestBox = (props: QuestBoxType) => {
-  const [activeState, setActiveState] = useState(Number(props.active));
+  const [activeState, setActiveState] = useState<number>(0);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
   const dispatch = useDispatch();
+  // console.log("props avalues are", props.active, typeof props.active);
+  // console.log("activeStates are", activeState, typeof activeState);
+
+  const propsActiveState = props.active || 0;
+  const clickedCardNum = useSelector((state: any) => {
+    clickedCardNum: state.tetris.clickedCardNum;
+  });
+
+  useEffect(() => {
+    setActiveState(propsActiveState);
+  }, [propsActiveState]);
+
+  const toggleHover = () => {
+    setIsHovered(!isHovered);
+  };
+
+  // const [open, setOpen] = useState(false);
+
+  const { modalOpen } = useSelector((state: any) => ({
+    modalOpen: state.tetris.modalOpen,
+  }));
+  const handleOpen = () => {
+    dispatch(setModalOpen({ modalOpen: true }));
+  };
+  const { myInfo } = useSelector((state: any) => ({
+    myInfo: state.tetris?.myInfo,
+  }));
+
+  useEffect(() => {
+    console.log(open);
+  }, [open]);
 
   return (
     <div>
       <div
-        className={`w-[180px] col-span-1 rounded-[20px] bg-[#030A13] flex flex-col justify-between cursor-pointer ${
-          activeState === 1
+        className={`w-[180px] col-span-1 rounded-[20px] bg-[#030A13] flex flex-col justify-between cursor-pointer
+        ${
+          activeState === 2
             ? "active_card"
-            : activeState === 2
+            : activeState === 1
             ? "active_card_used"
             : ""
-        }`}
+        }
+        ${isHovered ? "hover-card" : ""}`}
+        onMouseEnter={toggleHover}
+        onMouseLeave={toggleHover}
         key={props.index}
         onClick={async () => {
+          dispatch(setClickedCardNum({ clickedCardNum: props.index }));
+          handleOpen();
           console.log(activeState);
-          if (activeState === 2) {
-            const result = await apiCaller.post("tetrises/receiveQuest", {
-              wallet: localStorage.getItem("connectedAddress"),
-              index: props.index,
-            });
-            setActiveState(1);
-            // console.log("😁😁", result);
-            dispatch(setMyXP({ myXP: result.data.existingUser?.totalXP }));
-            console.log("😁😁", result);
-            console.log("😁😁", result.data.existingUser?.totalXP);
-          }
+          // if (activeState === 2) {
+          //   const result = await apiCaller.post("tetrises/receiveQuest", {
+          //     wallet: localStorage.getItem("connectedAddress"),
+          //     index: props.index,
+          //   });
+          //   setActiveState(1);
+          //   // console.log("😁😁", result);
+          //   dispatch(setMyXP({ myXP: result.data.existingUser?.totalXP }));
+          // }
         }}
       >
         <div className="relative flex justify-between">

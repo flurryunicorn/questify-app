@@ -35,7 +35,7 @@ const LeaderXPItem = (props: LeaderItemType) => {
           {walletAddre}
         </div>
         <div className="text-[14px]  text-gray-200 font-700 flex justify-center">
-          {props.totalXP}
+          {props.totalXP}&nbsp;xp
         </div>
 
         <div className="flex justify-center">

@@ -23,9 +23,14 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { makeStyles } from "@mui/material";
 import HeaderMenuItem from "./HeaderMenuItem";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Button, IconButton } from "@mui/material";
+import { ThemeProvider } from "react-bootstrap";
 
 const Header = () => {
   const isSmallDevice = window.matchMedia("(max-width: 600px)").matches;
@@ -54,6 +59,16 @@ const Header = () => {
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const timer = React.useRef<number>();
+
+  // Menu
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const openDropDown = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseDropDown = () => {
+    setAnchorEl(null);
+  };
 
   React.useEffect(() => {
     return () => {
@@ -311,17 +326,50 @@ const Header = () => {
               )}
             </div>
 
-            {/* <div className="flex flex-row items-center md:justify-end sm:justify-end">
-              <div
-                className="pr-2 h-[35px] rounded-lg flex justify-center items-center 
-		                      text-[#929298] text-lg cursor-pointer m-4 border border-[#14B8A6] hover:text-white "
-              >
-                <img
-                  src="/images/logo2.png"
-                  className="mx-[6px] w-[20px] h-[20px]"
-                />
+            {isSmallDevice && (
+              <div className="flex flex-row items-center md:justify-end sm:justify-end">
+                <div
+                  className="h-[35px] w-[30px] rounded-lg flex justify-center items-center 
+		                      text-[#929298] text-lg cursor-pointer mr-2 border border-[#14B8A6] hover:text-white "
+                >
+                  <Button
+                    sx={{ border: "ThreeDDarkShadow" }}
+                    variant="text"
+                    onClick={handleClick}
+                  >
+                    <img
+                      src="/images/3-dot-icon-0.png"
+                      className="mx-[6px] w-[30px] h-[30px]"
+                    />
+                  </Button>
+                </div>
+
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={openDropDown}
+                  onClose={handleCloseDropDown}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/");
+                    }}
+                  >
+                    Explore
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/quests");
+                    }}
+                  >
+                    Quests
+                  </MenuItem>
+                </Menu>
               </div>
-            </div> */}
+            )}
 
             <Modal
               open={open}

@@ -147,8 +147,10 @@ const SubBettingPage = () => {
                 <div
                   className="bg-[#29B080] text-black rounded-[20px] w-[80px] h-[30px] cursor-pointer text-[16px] flex items-center justify-center"
                   onClick={() =>
-                    (window.location.href =
-                      "https://game-questify-tetrisk.web.app")
+                    window.open(
+                      "https://quesitfy-tetrisk-game-test.web.app",
+                      "_blank"
+                    )
                   }
                 >
                   Play

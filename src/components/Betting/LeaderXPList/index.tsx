@@ -17,7 +17,7 @@ const LeaderXPList = (props: LeaderItemType) => {
         />
       </div>
       <div className="">{walletAddre}</div>
-      <div className="text-[16px] font-700">{props.totalXP}</div>
+      <div className="text-[16px] font-700">{props.totalXP}&nbsp;xp</div>
     </li>
   );
 };

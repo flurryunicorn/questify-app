@@ -36,10 +36,10 @@ const QuestLeaderboard = () => {
     let tempWinners = Object.assign({ ...winners });
     if (
       Object.keys(tempWinners) &&
-      Object.keys(tempWinners).indexOf("showInfo") > -1 &&
-      tempWinners.showInfo.length > 0
+      Object.keys(tempWinners).indexOf("showXPInfo") > -1 &&
+      tempWinners.showXPInfo.length > 0
     ) {
-      tempWinners = [...tempWinners.showInfo].sort(
+      tempWinners = [...tempWinners.showXPInfo].sort(
         (a, b) => b.totalXP - a.totalXP
       );
 
@@ -58,6 +58,7 @@ const QuestLeaderboard = () => {
       setIsloading(false);
     }
   }, [winners]);
+  console.log("TEMPWINNERSSSSSSS");
 
   return (
     <BorderPanel style=" ">

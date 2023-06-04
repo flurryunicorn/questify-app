@@ -131,8 +131,8 @@ const Home = () => {
       });
       console.log("🙌", result.data.data);
       // console.log("ssdfd", result.data.data.totalBalance);
-      dispatch(setMyBalance({ balance: result.data.data.totalBalance }));
-      dispatch(setMyInfo({ myInfo: result.data.data }));
+      // dispatch(setMyBalance({ balance: result.data.data.totalBalance }));
+      // dispatch(setMyInfo({ myInfo: result.data.data }));
     }
   };
 

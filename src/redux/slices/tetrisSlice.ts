@@ -5,6 +5,8 @@ export interface TetrisState {
     balance: number;
     myInfo:object;
     myXP:number;
+    modalOpen:boolean;
+    clickedCardNum:number;
 }
 
 const initialState: TetrisState = {
@@ -12,6 +14,8 @@ const initialState: TetrisState = {
     balance: 0,
     myInfo:{},
     myXP:0,
+    modalOpen:false,
+    clickedCardNum:0,
 
 }
 
@@ -32,6 +36,13 @@ export const tetrisSlice = createSlice({
         setMyXP: (state, action: PayloadAction<any>) => {
             state.myXP = action.payload.myXP;
         },
+        setModalOpen: (state, action: PayloadAction<any>) => {
+            state.modalOpen = action.payload.modalOpen;
+        },
+        setClickedCardNum: (state, action: PayloadAction<any>) => {
+            state.clickedCardNum = action.payload.clickedCardNum;
+        },
+
 
     },
 })
@@ -41,6 +52,8 @@ export const {
   setMyBalance,
   setMyInfo,
   setMyXP,
+  setModalOpen,
+  setClickedCardNum,
 
 } = tetrisSlice.actions
 

@@ -29,10 +29,9 @@
   height: 36px;
   /* width: 15vw; */
   background-color: #363c3f;
-  border-radius: 40;
   position: relative;
-  border-radius: 40px;
-  margin-left:-20px;
+  /* border-radius: 20px; */
+  /* margin-left:-10px; */
   margin-top:10px;
   z-index: 0;
 
@@ -67,9 +66,9 @@
 .child_div {
   height: 100%;
   background-color: #29b080;
-  clip-path: polygon(0% 0%, 100% 0%, 92% 100%, 0% 100%);
-  border-bottom-left-radius: 40px;
-  border-top-left-radius: 40px;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  /* border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px; */
 }
 
 .progress_text {
@@ -93,6 +92,10 @@
 .active_card_used{
   border: 2px solid #6C9C6E;
   animation: glow 1s infinite;
+}
+
+.hover_card{
+  box-shadow: 0px 0px 2px white;
 }
 
 @keyframes glow {

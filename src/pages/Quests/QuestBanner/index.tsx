@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import { toast } from "react-toastify";
 import { BorderPanel } from "../../../components/Common/Panels";
 import QuestBox from "../QuestBox";
@@ -5,7 +6,21 @@ import { QuestBoxType } from "../QuestBox";
 import { useEffect, useState } from "react";
 import { apiCaller } from "../../../utils/fetcher";
 import { setMyInfo } from "../../../redux/slices/tetrisSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setModalOpen,
+  setClickedCardNum,
+  setMyXP,
+} from "../../../redux/slices/tetrisSlice";
+
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
 
 // import { QUESTIFY_QUESTS } from "../../../data";
 
@@ -23,6 +38,8 @@ const QUESTIFY_QUESTS: QuestBoxType[] = [
     icon: "/images/wallets/xp.png",
     amount: 100,
     thumbnail: "/images/quests/solarity-quests/solarity-discord.png",
+    fullDescription: "This is Daily Quest. Check and play everyday!!!",
+    untilClaim: 1,
   },
   {
     title: "x10 Play",
@@ -32,6 +49,9 @@ const QUESTIFY_QUESTS: QuestBoxType[] = [
     icon: "/images/wallets/xp.png",
     amount: 100,
     thumbnail: "/images/quests/solarity-quests/mint-room.png",
+    fullDescription:
+      "Play the game more than 10 times to claim your quests. Try!!!",
+    untilClaim: 10,
   },
   {
     title: "Win Game",
@@ -41,6 +61,9 @@ const QUESTIFY_QUESTS: QuestBoxType[] = [
     icon: "/images/wallets/xp.png",
     amount: 100,
     thumbnail: "/images/quests/solarity-quests/extension.png",
+    fullDescription:
+      "First Win, and First Claim. Be winner to claim your quests",
+    untilClaim: 1,
   },
   {
     title: "x5 Win",
@@ -50,6 +73,8 @@ const QUESTIFY_QUESTS: QuestBoxType[] = [
     icon: "/images/wallets/xp.png",
     amount: 100,
     thumbnail: "/images/quests/solarity-quests/prompt.png",
+    fullDescription: "Win again and again, more than 5 times. ",
+    untilClaim: 5,
   },
 ];
 const TETRISK_QUESTS: QuestBoxType[] = [
@@ -91,36 +116,86 @@ const TETRISK_QUESTS: QuestBoxType[] = [
   },
 ];
 
+const stylex = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  maxWidth: 345,
+  border: 1,
+  borderColor: "#6C9C6E",
+  borderRadius: "20px",
+  font: "IBMPlexMono-Regular",
+  boxShadow: "0 0 10px 0 rgb(43, 100, 50)",
+};
+
 const QuestBanner = (props: QuestBannerProps) => {
+  const dispatch = useDispatch();
+
+  const [questStatus, setQuestStatus] = useState(new Array(4).fill(0));
+
   const { myInfo } = useSelector((state: any) => ({
     myInfo: state.tetris?.myInfo,
   }));
 
-  // console.log("❤️", data);
+  const wallet = localStorage.getItem("connectedAddress");
 
-  var activeList: number[] = [0, 0, 0, 0];
+  const setInitial = async () => {
+    console.log("_________", wallet);
+    const result = await apiCaller.post("tetrises/getMyInfo", {
+      wallet,
+    });
+    console.log("👌", result);
+    await dispatch(setMyInfo({ myInfo: result.data.data }));
+  };
 
-  for (let j = 0; j < activeList.length; j++) {
-    if (
-      myInfo.tetris?.allQuests[j] === 1 &&
-      myInfo.tetris?.receivedQuests[j] === 1
-    ) {
-      activeList[j] = 1;
-    } else if (
-      myInfo.tetris?.allQuests[j] === 1 &&
-      myInfo.tetris?.receivedQuests[j] === 0
-    ) {
-      activeList[j] = 2;
-    } else {
-      activeList[j] = 0;
+  useEffect(() => {
+    setInitial();
+    // var activeList: number[] = [0, 0, 0, 0];
+    // let activeList: Array<number | undefined> = new Array(4).fill(undefined);
+    // for (let j = 0; j < activeList.length; j++) {
+    //   if (
+    //     myInfo.tetris?.allQuests[j] === 1 &&
+    //     myInfo.tetris?.receivedQuests[j] === 1
+    //   ) {
+    //     activeList[j] = 1;
+    //   } else if (
+    //     myInfo.tetris?.allQuests[j] === 1 &&
+    //     myInfo.tetris?.receivedQuests[j] === 0
+    //   ) {
+    //     activeList[j] = 2;
+    //   } else {
+    //     activeList[j] = 0;
+    //   }
+    // }
+  }, []);
+
+  useEffect(() => {
+    console.log("💕", myInfo);
+    let statusArray = new Array(4).fill(0);
+
+    for (let i = 0; i < 4; i++) {
+      statusArray[i] =
+        myInfo.tetris?.allQuests[i] + myInfo.tetris?.receivedQuests[i];
     }
-  }
+    console.log("🤣", statusArray);
 
-  console.log(
-    myInfo.tetris?.allQuests,
-    myInfo.tetris?.receivedQuests,
-    activeList
-  );
+    setQuestStatus(statusArray);
+  }, [myInfo]);
+
+  const { modalOpen } = useSelector((state: any) => ({
+    modalOpen: state.tetris.modalOpen,
+  }));
+
+  const { clickedCardNum } = useSelector((state: any) => ({
+    clickedCardNum: state.tetris.clickedCardNum,
+  }));
+  const handleOpen = () => {
+    dispatch(setModalOpen({ modalOpen: true }));
+  };
+  const handleClose = async () => {
+    dispatch(setModalOpen({ modalOpen: false }));
+  };
 
   return (
     <BorderPanel>
@@ -132,12 +207,14 @@ const QuestBanner = (props: QuestBannerProps) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 custom-2xl:grid-cols-5 gap-4 mb-8 justify-between">
           {props.id == 0 &&
             QUESTIFY_QUESTS.map((quest, index) => (
-              <QuestBox
-                key={index}
-                {...quest}
-                index={index}
-                active={activeList[index]}
-              />
+              <div>
+                <QuestBox
+                  key={index}
+                  {...quest}
+                  index={index}
+                  active={questStatus[index]}
+                />
+              </div>
             ))}
           {props.id == 1 &&
             TETRISK_QUESTS.map((quest, index) => (
@@ -145,11 +222,96 @@ const QuestBanner = (props: QuestBannerProps) => {
                 key={index}
                 {...quest}
                 index={index}
-                active={activeList[index]}
+                active={questStatus[index]}
               />
             ))}
         </div>
       </div>
+      <Modal
+        open={modalOpen}
+        onClose={handleClose}
+        // aria-labelledby="modal-modal-title"
+        // aria-describedby="modal-modal-description"
+      >
+        <Card sx={stylex}>
+          <CardMedia
+            style={{ background: "white" }}
+            component="img"
+            height="140"
+            image={QUESTIFY_QUESTS[clickedCardNum].thumbnail}
+          />
+          <CardContent
+            sx={{
+              background: "black",
+              color: "white",
+            }}
+          >
+            <Typography gutterBottom variant="h5" component="div">
+              {QUESTIFY_QUESTS[clickedCardNum].title}
+            </Typography>
+            <Typography variant="body2" color="">
+              {QUESTIFY_QUESTS[clickedCardNum].fullDescription}
+            </Typography>
+          </CardContent>
+          <CardActions
+            sx={{
+              background: "black",
+              color: "white",
+              display: "flex",
+              justifyContent: "end",
+            }}
+          >
+            {questStatus[clickedCardNum] == 2 && (
+              <Button
+                size="small"
+                color="success"
+                variant="outlined"
+                sx={{ marginRight: "10px" }}
+              >
+                Claimed
+              </Button>
+            )}
+            {questStatus[clickedCardNum] == 1 && (
+              <Button
+                size="small"
+                color="success"
+                variant="contained"
+                sx={{ marginRight: "10px" }}
+                onClick={async () => {
+                  const result = await apiCaller.post("tetrises/receiveQuest", {
+                    wallet: localStorage.getItem("connectedAddress"),
+                    index: clickedCardNum,
+                  });
+                  dispatch(setMyInfo({ myInfo: result.data.existingUser }));
+                  // console.log("😁😁", result);
+                  dispatch(
+                    setMyXP({ myXP: result.data.existingUser?.totalXP })
+                  );
+                }}
+              >
+                Claim quests
+              </Button>
+            )}
+            {questStatus[clickedCardNum] == 0 && (
+              <Button
+                size="small"
+                color="success"
+                variant="contained"
+                sx={{ marginRight: "10px" }}
+                // onClick={handleClose}
+                onClick={() => {
+                  window.open(
+                    "https://quesitfy-tetrisk-game-test.web.app",
+                    "_blank"
+                  );
+                }}
+              >
+                Play Game
+              </Button>
+            )}
+          </CardActions>
+        </Card>
+      </Modal>
     </BorderPanel>
   );
 };

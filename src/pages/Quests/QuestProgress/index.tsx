@@ -23,9 +23,13 @@ const QuestProgress = ({ progress }) => {
       <h1 className="text-[20px] mx-4 my-3 text-md  text-gray-200">
         Quest Progress
       </h1>
-      <div className="flex flex-row justify-center">
+      <div className="flex flex-row justify-center mb-5">
         <div className="z-15 ml-[-15px]">
-          <img src="/images/quests/Avatar.png" width="100px" />
+          <img
+            src="/images/quests/Avatar.png"
+            width="100px"
+            className=" rounded-lg"
+          />
         </div>
         <div className="mt-5">
           <div className="parent_div lg:w-[15vw] w-[60vw]">
