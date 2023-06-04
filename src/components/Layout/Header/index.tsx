@@ -95,6 +95,7 @@ const Header = () => {
       connect(connected);
     }
   }, []);
+  console.log("??????", connected);
 
   const { balance } = useSelector((state: any) => ({
     balance: state.tetris.balance,
@@ -229,6 +230,11 @@ const Header = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 bg-[#030A13] z-[100] ">
+      <ToastContainer
+        style={{ fontSize: "14px", zIndex: "1000" }}
+        autoClose={1000}
+        hideProgressBar={true}
+      />
       <div
         className="flex 
               custom-2xl:flex-row xl:flex-row lg:flex-row md:flex-row sm:flex-row xs:flex-row
@@ -509,8 +515,6 @@ const Header = () => {
                 </div>
               </Box>
             </Modal>
-
-            <ToastContainer className="text-4" />
           </div>
         </div>
       </div>

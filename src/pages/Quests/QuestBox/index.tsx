@@ -26,6 +26,7 @@ import {
   setModalOpen,
   setClickedCardNum,
 } from "../../../redux/slices/tetrisSlice";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 const QuestBox = (props: QuestBoxType) => {
   const [activeState, setActiveState] = useState<number>(0);
@@ -127,16 +128,22 @@ const QuestBox = (props: QuestBoxType) => {
             </span>
           </div>
           <div className="flex w-full justify-center bottom-1">
-            <div className="flex items-center gap-2 ">
-              <img
-                src={props.icon}
-                className="h-[16px] rounded-full"
-                alt="icon"
-                width={16}
-                height={16}
-              />
-              <div className="text-[#F3F3F3] text-[18px]">{props.amount}</div>
-            </div>
+            {activeState !== 2 ? (
+              <div className="flex items-center gap-2 ">
+                <img
+                  src={props.icon}
+                  className="h-[16px] rounded-full"
+                  alt="icon"
+                  width={16}
+                  height={16}
+                />
+                <div className="text-[#F3F3F3] text-[18px]">{props.amount}</div>
+              </div>
+            ) : (
+              <div className="flex items-center">
+                <CheckCircleOutlineIcon color="success" />
+              </div>
+            )}
             {/* <div className="w-[60px]">
             <PrimaryButton
               caption={props.buttonCaption || "Get"}

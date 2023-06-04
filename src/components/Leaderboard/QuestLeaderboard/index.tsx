@@ -31,7 +31,6 @@ const QuestLeaderboard = () => {
 
   const [sortedWinners, setSortedWinners] = useState<any>([]);
 
-  // console.log(tempWinners);
   useEffect(() => {
     let tempWinners = Object.assign({ ...winners });
     if (
@@ -58,7 +57,6 @@ const QuestLeaderboard = () => {
       setIsloading(false);
     }
   }, [winners]);
-  console.log("TEMPWINNERSSSSSSS");
 
   return (
     <BorderPanel style=" ">

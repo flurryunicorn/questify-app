@@ -138,36 +138,33 @@ const QuestBanner = (props: QuestBannerProps) => {
     myInfo: state.tetris?.myInfo,
   }));
 
+  useEffect(() => {
+    console.log("🙌", myInfo);
+  }, []);
+
   const wallet = localStorage.getItem("connectedAddress");
 
   const setInitial = async () => {
-    console.log("_________", wallet);
-    const result = await apiCaller.post("tetrises/getMyInfo", {
-      wallet,
-    });
-    console.log("👌", result);
-    await dispatch(setMyInfo({ myInfo: result.data.data }));
+    if (wallet) {
+      console.log("😘", wallet);
+      const result = await apiCaller.post("tetrises/getMyInfo", {
+        wallet,
+      });
+      console.log("👌", result);
+      await dispatch(setMyInfo({ myInfo: result.data.data }));
+    } else {
+      toast.warn("You should connect wallet first!");
+      console.log("😘", wallet);
+      const result = await apiCaller.post("tetrises/getMyInfo", {
+        wallet: "template",
+      });
+      console.log("👌", result);
+      await dispatch(setMyInfo({ myInfo: result.data.data }));
+    }
   };
 
   useEffect(() => {
     setInitial();
-    // var activeList: number[] = [0, 0, 0, 0];
-    // let activeList: Array<number | undefined> = new Array(4).fill(undefined);
-    // for (let j = 0; j < activeList.length; j++) {
-    //   if (
-    //     myInfo.tetris?.allQuests[j] === 1 &&
-    //     myInfo.tetris?.receivedQuests[j] === 1
-    //   ) {
-    //     activeList[j] = 1;
-    //   } else if (
-    //     myInfo.tetris?.allQuests[j] === 1 &&
-    //     myInfo.tetris?.receivedQuests[j] === 0
-    //   ) {
-    //     activeList[j] = 2;
-    //   } else {
-    //     activeList[j] = 0;
-    //   }
-    // }
   }, []);
 
   useEffect(() => {
@@ -247,7 +244,26 @@ const QuestBanner = (props: QuestBannerProps) => {
             }}
           >
             <Typography gutterBottom variant="h5" component="div">
-              {QUESTIFY_QUESTS[clickedCardNum].title}
+              {QUESTIFY_QUESTS[clickedCardNum].title}{" "}
+              {clickedCardNum == 0 ? (
+                questStatus[clickedCardNum] == 0 ? (
+                  <span>(0/1)</span>
+                ) : (
+                  <span>(1/1)</span>
+                )
+              ) : clickedCardNum == 1 ? (
+                <span>({Number(myInfo.totalPlay)}/10)</span>
+              ) : clickedCardNum == 2 ? (
+                <span>({Number(myInfo.tetris.wins.length) > 0 ? 1 : 0}/1)</span>
+              ) : (
+                <span>
+                  (
+                  {Number(myInfo.tetris.wins.length) > 5
+                    ? 5
+                    : Number(myInfo.tetris.wins.length)}
+                  /5)
+                </span>
+              )}
             </Typography>
             <Typography variant="body2" color="">
               {QUESTIFY_QUESTS[clickedCardNum].fullDescription}
@@ -301,7 +317,7 @@ const QuestBanner = (props: QuestBannerProps) => {
                 // onClick={handleClose}
                 onClick={() => {
                   window.open(
-                    "https://quesitfy-tetrisk-game-test.web.app",
+                    "https://questify-game-tetrisk-testing.web.app",
                     "_blank"
                   );
                 }}

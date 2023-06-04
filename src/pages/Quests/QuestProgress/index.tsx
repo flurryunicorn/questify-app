@@ -32,7 +32,7 @@ const QuestProgress = ({ progress }) => {
           />
         </div>
         <div className="mt-5">
-          <div className="parent_div lg:w-[15vw] w-[60vw]">
+          <div className="parent_div lg:w-[14vw] w-[60vw]">
             <div className="progress_icon"></div>
             <div className="progress_lvl">{lvl}</div>
             <div className="child_div" style={{ width: `${w}%` }}></div>

@@ -465,7 +465,6 @@ const Home = () => {
             </div>
           </Box>
         </Modal>
-        <ToastContainer />
 
         <SmallButton
           caption="Claim"
