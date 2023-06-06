@@ -1,5 +1,3 @@
-import React from "react";
-import { DailDropType } from "../components/Betting/DailyDrop";
 import { LeaderItemType } from "../components/Betting/LeaderItem";
 import { DetailedLeaderItemType } from "../components/Betting/ListItem";
 import { BorderMenuItemProps } from "../components/Common/Menus/BorderMenuItem";
@@ -40,53 +38,6 @@ export const QUEST_LEADERBOARD_SUB_MENUITEMS: BorderMenuItemProps[] = [
     name: "All Time",
     active: false,
     type: "small",
-  },
-];
-
-export const DAILY_DROPS: DailDropType[] = [
-  {
-    bgPanel: "/images/betting/bp1.png",
-    curPrice: 100000,
-    unit: "SEI",
-    title: "Tetrisk",
-    openType: true,
-    slots: 35,
-    curSlots: 35,
-    entryPrice: 0.5,
-    endTime: "00:02:52",
-  },
-  {
-    bgPanel: "/images/betting/bp2.png",
-    curPrice: 100,
-    unit: "FABLE",
-    title: "Fable",
-    openType: true,
-    slots: 35,
-    curSlots: 35,
-    entryPrice: 0.5,
-    endTime: "00:02:52",
-  },
-  {
-    bgPanel: "/images/betting/bp1.png",
-    curPrice: 100000,
-    unit: "SEI",
-    title: "Tetrisk",
-    openType: true,
-    slots: 35,
-    curSlots: 35,
-    entryPrice: 0.5,
-    endTime: "00:02:52",
-  },
-  {
-    bgPanel: "/images/betting/bp2.png",
-    curPrice: 100,
-    unit: "FABLE",
-    title: "Fable",
-    openType: true,
-    slots: 35,
-    curSlots: 35,
-    entryPrice: 0.5,
-    endTime: "00:02:52",
   },
 ];
 
@@ -349,26 +300,6 @@ export const HeaderMenuTitles = [
     name: "Quests",
     link: "/quests",
   },
-  // {
-  //     name: 'Tetrisk',
-  //     link: '/subbetting',
-  // },
-  // {
-  //     name: 'Games',
-  //     link: 'Games',
-  // },
-  // {
-  //     name: 'Events',
-  //     link: 'Events',
-  // },
-  // {
-  //     name: 'Games',
-  //     link: 'games',
-  // },
-  // {
-  //     name: 'Quests',
-  //     link: 'quests',
-  // }
 ];
 
 export const EXPLORE_BANNER_SLIDES: SliderType[] = [
@@ -446,36 +377,110 @@ export const EXPLORE_BANNER_SLIDES: SliderType[] = [
 
 export const QUESTIFY_QUESTS: QuestBoxType[] = [
   {
-    active: 1,
-    title: "Daily Quest",
-    subTitle: "Daily Quests",
-    description: "Play Game EveryDay",
+    index: 1,
+    title: "Daily Login",
+    subTitle: "Daily Login",
+    description: "Login EveryDay",
     avatar: "/images/quests/avatars/discord.png",
     icon: "/images/wallets/xp.png",
-    amount: 100,
+    amount: 10,
     thumbnail: "/images/quests/solarity-quests/solarity-discord.png",
+    fullDescription: "This is Daily Quest. Check and play everyday!!!",
+    untilClaim: 1,
   },
   {
+    index: 2,
+    title: "Daily Steaker",
+    subTitle: "x5 Login",
+    description: "Login the site eacy days for 5 days Consecutively",
+    avatar: "/images/social/twitter.png",
+    icon: "/images/wallets/xp.png",
+    amount: 50,
+    thumbnail: "/images/quests/solarity-quests/mint-room.png",
+    fullDescription:
+      "Login the site eacy days for 5 days Consecutively. Try!!!",
+    untilClaim: 5,
+  },
+  {
+    index: 3,
+    title: "x5 Deposit",
+    subTitle: "x5 Deposit",
+    description: "Deposit 5 times",
+    avatar: "/images/social/twitter.png",
+    icon: "/images/wallets/xp.png",
+    amount: 50,
+    thumbnail: "/images/quests/solarity-quests/mint-room.png",
+    fullDescription:
+      "Deposit more than 5 times, then you can claim your quests",
+    untilClaim: 5,
+  },
+
+  {
+    index: 4,
+    title: "20 SEI Deposit",
+    subTitle: "20sei Deposit",
+    description: "Total amount of Deposit value should 10 sei",
+    avatar: "/images/social/twitter.png",
+    icon: "/images/wallets/xp.png",
+    amount: 200,
+    thumbnail: "/images/quests/solarity-quests/mint-room.png",
+    fullDescription:
+      "Total amount of deposit value should be 10 sei, then calim your big quest",
+    untilClaim: 20,
+  },
+  {
+    index: 5,
+    title: "Daily Play",
+    subTitle: "Daily Play",
+    description: "Play Tetrisk everyday",
+    avatar: "/images/social/twitter.png",
+    icon: "/images/wallets/xp.png",
+    amount: 20,
+    thumbnail: "/images/quests/solarity-quests/mint-room.png",
+    fullDescription: "Play the game everyday and you could claim your quests.",
+    untilClaim: 1,
+  },
+  {
+    index: 6,
+    title: "5 Plays Consecutive Play",
+    subTitle: "x5 Days play",
+    description: "Play Tetrisk for 5 days consecutively",
+    avatar: "/images/social/twitter.png",
+    icon: "/images/wallets/xp.png",
+    amount: 100,
+    thumbnail: "/images/quests/solarity-quests/mint-room.png",
+    fullDescription:
+      "Play the game more than 10 times to claim your quests. Try!!!",
+    untilClaim: 5,
+  },
+  {
+    index: 7,
     title: "x10 Play",
     subTitle: "x10 Play",
     description: "Play 10 times",
     avatar: "/images/social/twitter.png",
     icon: "/images/wallets/xp.png",
-    amount: 100,
+    amount: 50,
     thumbnail: "/images/quests/solarity-quests/mint-room.png",
+    fullDescription:
+      "Play the game more than 10 times to claim your quests. Try!!!",
+    untilClaim: 10,
   },
   {
-    active: 1,
+    index: 8,
     title: "Win Game",
     subTitle: "Win Game",
     description: "Win the Game for the first time",
     avatar: "/images/quests/avatars/extension.png",
     icon: "/images/wallets/xp.png",
-    amount: 100,
+    amount: 20,
     thumbnail: "/images/quests/solarity-quests/extension.png",
+    fullDescription:
+      "Play the game more than 10 times to claim your quests. Try!!!",
+    untilClaim: 1,
   },
   {
-    active: 2,
+    index: 9,
     title: "x5 Win",
     subTitle: "x5 Win",
     description: "Win the Game 5 times",
@@ -483,16 +488,47 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     icon: "/images/wallets/xp.png",
     amount: 100,
     thumbnail: "/images/quests/solarity-quests/prompt.png",
+    fullDescription:
+      "Play the game more than 10 times to claim your quests. Try!!!",
+    untilClaim: 5,
   },
-  // {
-  //   // active: true,
-  //   title: "Deposit",
-  //   subTitle: <span className="text-[#D886FF]">Deposit</span>,
-  //   description: "You Deposited for the first time",
-  //   avatar: "/images/quests/avatars/discord.png",
-  //   isAvatar: true,
-  //   icon: "/images/wallets/xp.png",
-  //   amount: 100,
-  //   thumbnail: "/images/quests/solarity-quests/final.png",
-  // },
+  {
+    index: 10,
+    title: "Play Easy",
+    subTitle: "Play Easy",
+    description: "Play on easy level",
+    avatar: "/images/quests/avatars/prompt.png",
+    icon: "/images/wallets/xp.png",
+    amount: 10,
+    thumbnail: "/images/quests/solarity-quests/prompt.png",
+    fullDescription:
+      "Play the game more than 10 times to claim your quests. Try!!!",
+    untilClaim: 1,
+  },
+  {
+    index: 11,
+    title: "Play Medium",
+    subTitle: "Play Medium",
+    description: "Play on medium level",
+    avatar: "/images/quests/avatars/prompt.png",
+    icon: "/images/wallets/xp.png",
+    amount: 20,
+    thumbnail: "/images/quests/solarity-quests/prompt.png",
+    fullDescription:
+      "Play the game more than 10 times to claim your quests. Try!!!",
+    untilClaim: 1,
+  },
+  {
+    index: 12,
+    title: "Play Hard",
+    subTitle: "Play Hard",
+    description: "Play on hard level",
+    avatar: "/images/quests/avatars/prompt.png",
+    icon: "/images/wallets/xp.png",
+    amount: 30,
+    thumbnail: "/images/quests/solarity-quests/prompt.png",
+    fullDescription:
+      "Play the game more than 10 times to claim your quests. Try!!!",
+    untilClaim: 1,
+  },
 ];

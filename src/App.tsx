@@ -6,16 +6,8 @@ import {
 } from "react-router-dom";
 import routes from "./routes/routes";
 import Header from "./components/Layout/Header";
-import Home from "./pages/Home";
-import Tetris from "./pages/Tetris";
-import { useEffect } from "react";
-// import socket from "./utils/socket-client";
-import { ProSidebarProvider } from "react-pro-sidebar";
 
 function App() {
-  // useEffect(() => {
-  //   (window as any).socket = socket();
-  // }, []);
   return (
     <div>
       <Router>

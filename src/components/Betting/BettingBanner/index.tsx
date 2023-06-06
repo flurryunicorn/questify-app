@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import { SmallButton } from "../../../components/Common/Buttons";
-import { WEEK_GAMES } from "../../../data";
 import { useNavigate } from "react-router-dom";
 export type BettingBannerType = {
   title: string;
@@ -77,16 +76,6 @@ const BettingBanner = (props: BettingBannerType) => {
             </div>
           )}
         </div>
-        {/* <div className='text-[20px] font-[500]  text-gray-200 mt-[-10px]'> */}
-        {/* <h3>Games of the week:</h3> */}
-        {/* <div className='flex gap-[20px]'>
-                        {WEEK_GAMES.map((game, index) => (
-                            <div key={index} className={`${index == active ? 'border-[4px] border-primary hover:border-[6px] ' : 'hover:border-[5px]'} rounded-[25px] w-[64px] h-[64px] cursor-pointer`}>
-                                <img src={game.bgImg} className='rounded-[25px]' width={64} height={64} />
-                            </div>
-                        ))}
-                    </div> */}
-        {/* </div> */}
       </div>
     </div>
   );
