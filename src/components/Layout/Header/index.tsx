@@ -31,6 +31,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button, IconButton } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { CircularProgress } from "@mui/material";
 
 const Header = () => {
   const isSmallDevice = window.matchMedia("(max-width: 600px)").matches;
@@ -170,6 +171,8 @@ const Header = () => {
             amount: amount,
           });
 
+          // if result.data.
+
           const num1 = Number(QUESTIFY_QUESTS[2].untilClaim);
           const num2 = Number(QUESTIFY_QUESTS[3].untilClaim);
           const resValue = result.data.existingUser;
@@ -183,10 +186,12 @@ const Header = () => {
           )
             toast.info("Check the Quests!");
           console.log("QQQsss");
+          console.log("before myInfoDispatch:", result.data.existingUser);
           dispatch(
             setMyBalance({ balance: result.data.existingUser.totalBalance })
           );
-          dispatch(setMyInfo({ myInfo: resValue }));
+          console.log("myInfoDispatch:", result.data.existingUser);
+          dispatch(setMyInfo({ myInfo: result.data.existingUser }));
           dispatch(setDepositModalOpen({ depositModalOpen: false }));
           toast.info("Deposit Succeed!");
           setDepositLoading(false);
@@ -207,20 +212,25 @@ const Header = () => {
       // console.log("Error occurred in sending token", err);
       localStorage.removeItem("txHash");
       setSending(false);
+      toast.error("Backend Error!");
       return false;
     }
   };
 
   const getMyInfo = async (wallet: string) => {
     if (accounts && accounts.length) {
-      var result = await apiCaller.post("users/getMyInfo", {
-        wallet,
-      });
-      // console.log("ssdfd", result.data.data.totalBalance);
-      dispatch(setMyBalance({ balance: result.data.data.totalBalance }));
-      dispatch(setMyInfo({ myInfo: result.data.data }));
-      dispatch(setMyXP({ myXP: result.data.data.totalXP }));
-      console.log("RESULT", result, typeof result.data.data.totalXP);
+      try {
+        var result = await apiCaller.post("users/getMyInfo", {
+          wallet,
+        });
+        // console.log("ssdfd", result.data.data.totalBalance);
+        dispatch(setMyBalance({ balance: result.data.data.totalBalance }));
+        dispatch(setMyInfo({ myInfo: result.data.data }));
+        dispatch(setMyXP({ myXP: result.data.data.totalXP }));
+        console.log("RESULT", result, typeof result.data.data.totalXP);
+      } catch (error) {
+        toast.error("Cannot fetch Data!");
+      }
     }
   };
 
@@ -436,6 +446,9 @@ const Header = () => {
                       variant="contained"
                       color="success"
                       loading={depositLoading}
+                      loadingIndicator={
+                        <CircularProgress color="success" size={16} />
+                      }
                       onClick={() => {
                         setDepositLoading(true);
                         if (depositAmount <= 0) {
@@ -475,6 +488,9 @@ const Header = () => {
                       variant="contained"
                       color="success"
                       loading={claimLoading}
+                      loadingIndicator={
+                        <CircularProgress color="success" size={16} />
+                      }
                       className="justify-end h-10 cursor-pointer bg-[#14B8A6] rounded-[10px] p-2 ml-4 font-mono text-white w-30"
                       onClick={async () => {
                         setClaimLoading(true);
@@ -509,7 +525,7 @@ const Header = () => {
                         } catch (err) {
                           // console.log(err);
                           setSending(false);
-                          toast.warn("error");
+                          toast.warn("Backend Error!");
                           setClaimLoading(false);
                           return;
                         }

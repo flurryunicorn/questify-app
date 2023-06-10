@@ -419,13 +419,13 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     index: 4,
     title: "20 SEI Deposit",
     subTitle: "20sei Deposit",
-    description: "Total amount of Deposit value should 10 sei",
+    description: "Total amount of Deposit value should 20 sei",
     avatar: "/images/social/twitter.png",
     icon: "/images/wallets/xp.png",
     amount: 200,
     thumbnail: "/images/quests/solarity-quests/mint-room.png",
     fullDescription:
-      "Total amount of deposit value should be 10 sei, then calim your big quest",
+      "Total amount of deposit value should be 20 sei, then calim your big quest",
     untilClaim: 20,
   },
   {
@@ -442,7 +442,7 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
   },
   {
     index: 6,
-    title: "5 Plays Consecutive Play",
+    title: "5 Consecutive days Play",
     subTitle: "x5 Days play",
     description: "Play Tetrisk for 5 days consecutively",
     avatar: "/images/social/twitter.png",
@@ -450,7 +450,7 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     amount: 100,
     thumbnail: "/images/quests/solarity-quests/mint-room.png",
     fullDescription:
-      "Play the game more than 10 times to claim your quests. Try!!!",
+      "Play the game 5 days consecutively to claim your quests. Try!!!",
     untilClaim: 5,
   },
   {
@@ -475,8 +475,7 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     icon: "/images/wallets/xp.png",
     amount: 20,
     thumbnail: "/images/quests/solarity-quests/extension.png",
-    fullDescription:
-      "Play the game more than 10 times to claim your quests. Try!!!",
+    fullDescription: "You could claim your quests after your first win. Try!!!",
     untilClaim: 1,
   },
   {
@@ -488,8 +487,7 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     icon: "/images/wallets/xp.png",
     amount: 100,
     thumbnail: "/images/quests/solarity-quests/prompt.png",
-    fullDescription:
-      "Play the game more than 10 times to claim your quests. Try!!!",
+    fullDescription: "Win more than 5 times and cliam your quests. Try!!!",
     untilClaim: 5,
   },
   {
@@ -502,7 +500,7 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     amount: 10,
     thumbnail: "/images/quests/solarity-quests/prompt.png",
     fullDescription:
-      "Play the game more than 10 times to claim your quests. Try!!!",
+      "Play the game on easy level and claim your quests. Try!!!",
     untilClaim: 1,
   },
   {
@@ -515,7 +513,7 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     amount: 20,
     thumbnail: "/images/quests/solarity-quests/prompt.png",
     fullDescription:
-      "Play the game more than 10 times to claim your quests. Try!!!",
+      "Play the game on medium level and claim your quests. Try!!!",
     untilClaim: 1,
   },
   {
@@ -528,7 +526,7 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     amount: 30,
     thumbnail: "/images/quests/solarity-quests/prompt.png",
     fullDescription:
-      "Play the game more than 10 times to claim your quests. Try!!!",
+      "Play the game on hard level and claim your quests. Try!!!",
     untilClaim: 1,
   },
 ];

@@ -14,6 +14,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { LoadingButton } from "@mui/lab";
+import { CircularProgress } from "@mui/material";
 
 const style = {
   position: "absolute" as "absolute",
@@ -130,17 +131,25 @@ const QuestProgress = () => {
                 size="small"
                 color="success"
                 variant="contained"
+                loadingIndicator={
+                  <CircularProgress color="success" size={16} />
+                }
                 loading={loadingButton}
                 sx={{ marginRight: "10px" }}
                 onClick={async () => {
-                  setLoadingButton(true);
-                  const result = await apiCaller.post("users/levelUp", {
-                    wallet: localStorage.getItem("connectedAddress"),
-                  });
-                  dispatch(setMyInfo({ myInfo: result.data.existingUser }));
-                  setModalOpen(false);
-                  setLvlup(false);
-                  toast.info(`You've got ${3 * (myInfo.level - 1)} balance!`);
+                  try {
+                    setLoadingButton(true);
+                    const result = await apiCaller.post("users/levelUp", {
+                      wallet: localStorage.getItem("connectedAddress"),
+                    });
+                    dispatch(setMyInfo({ myInfo: result.data.existingUser }));
+                    setModalOpen(false);
+                    setLvlup(false);
+                    toast.info(`You've got ${3 * (myInfo.level - 1)} balance!`);
+                  } catch (error) {
+                    setLoadingButton(false);
+                    toast.error("Backend Error!");
+                  }
                 }}
               >
                 Claim Reward

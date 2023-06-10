@@ -57,32 +57,38 @@ const QuestBanner = (props: QuestBannerProps) => {
   const wallet = localStorage.getItem("connectedAddress");
 
   const setInitial = async () => {
-    console.log("-- SetInitial is called --");
-    if (wallet) {
-      console.log("😘", wallet);
-      const result = await apiCaller.post("users/getMyInfo", {
-        wallet,
-      });
-      console.log("👌", result.data.data);
-      await dispatch(setMyInfo({ myInfo: result.data.data }));
-      setQuestifyCount(result.data.data.trackedQuests);
-      setTetrisCount(result.data.data.tetris.trackedQuests);
-    } else {
-      toast.warn("You should connect wallet first!");
-      console.log("😘 else", wallet);
-      const result = await apiCaller.post("users/getMyInfo", {
-        wallet: "template",
-      });
-      console.log("👌", result.data.data);
-      await dispatch(setMyInfo({ myInfo: result.data.data }));
-      setQuestifyCount(result.data.data.trackedQuests);
-      setTetrisCount(result.data.data.tetris.trackedQuests);
+    try {
+      if (wallet) {
+        console.log("😘", wallet);
+        const result = await apiCaller.post("users/getMyInfo", {
+          wallet,
+        });
+        console.log("👌", result.data.data);
+        await dispatch(setMyInfo({ myInfo: result.data.data }));
+      } else {
+        toast.warn("You should connect wallet first!");
+        console.log("😘 else", wallet);
+        const result = await apiCaller.post("users/getMyInfo", {
+          wallet: "template",
+        });
+        console.log("👌", result.data.data);
+        await dispatch(setMyInfo({ myInfo: result.data.data }));
+      }
+    } catch (error) {
+      toast.error("Cannot fetch Data!");
     }
   };
 
   useEffect(() => {
     setInitial();
   }, []);
+
+  useEffect(() => {
+    if (myInfo.trackedQuests !== undefined) {
+      setQuestifyCount(myInfo.trackedQuests);
+      setTetrisCount(myInfo.tetris.trackedQuests);
+    }
+  }, [myInfo]);
 
   useEffect(() => {
     console.log("💕", myInfo);
@@ -205,29 +211,37 @@ const QuestBanner = (props: QuestBannerProps) => {
                 variant="contained"
                 sx={{ marginRight: "10px" }}
                 onClick={async () => {
-                  if (clickedCardNum < 4) {
-                    const result = await apiCaller.post("users/receiveQuest", {
-                      wallet: localStorage.getItem("connectedAddress"),
-                      index: clickedCardNum,
-                    });
-                    dispatch(setMyInfo({ myInfo: result.data.existingUser }));
-                    // console.log("😁😁", result);
-                    dispatch(
-                      setMyXP({ myXP: result.data.existingUser?.totalXP })
-                    );
-                  } else {
-                    const result = await apiCaller.post(
-                      "tetrises/receiveQuest",
-                      {
-                        wallet: localStorage.getItem("connectedAddress"),
-                        index: clickedCardNum,
-                      }
-                    );
-                    dispatch(setMyInfo({ myInfo: result.data.existingUser }));
-                    // console.log("😁😁", result);
-                    dispatch(
-                      setMyXP({ myXP: result.data.existingUser?.totalXP })
-                    );
+                  try {
+                    if (clickedCardNum < 4) {
+                      const result = await apiCaller.post(
+                        "users/receiveQuest",
+                        {
+                          wallet: localStorage.getItem("connectedAddress"),
+                          index: clickedCardNum,
+                        }
+                      );
+                      dispatch(setMyInfo({ myInfo: result.data.existingUser }));
+                      // console.log("😁😁", result);
+                      dispatch(
+                        setMyXP({ myXP: result.data.existingUser?.totalXP })
+                      );
+                    } else {
+                      const result = await apiCaller.post(
+                        "tetrises/receiveQuest",
+                        {
+                          wallet: localStorage.getItem("connectedAddress"),
+                          index: clickedCardNum,
+                        }
+                      );
+                      dispatch(setMyInfo({ myInfo: result.data.existingUser }));
+                      // console.log("😁😁", result);
+                      dispatch(
+                        setMyXP({ myXP: result.data.existingUser?.totalXP })
+                      );
+                      dispatch(setModalOpen({ modalOpen: false }));
+                    }
+                  } catch (error) {
+                    toast.error("Backend Error!");
                   }
                 }}
               >

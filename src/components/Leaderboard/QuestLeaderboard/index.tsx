@@ -11,13 +11,18 @@ import LeaderXPItem from "../../Betting/LeaderXPItem";
 import { QUEST_LEADERBOARD_SUB_MENUITEMS } from "../../../data";
 import QuestBorderMenuItem from "../../Common/Menus/QuestBorderMenuItem";
 import LeaderXPList from "../../Betting/LeaderXPList";
+import { ToastContainer, toast } from "react-toastify";
 
 const QuestLeaderboard = () => {
   const dispatch = useDispatch();
 
   const fetchLeaderboard = async () => {
-    var result = await apiCaller.get("tetrises/fetchLeaderboard");
-    dispatch(setLeaderboard({ result: result.data.data }));
+    try {
+      var result = await apiCaller.get("tetrises/fetchLeaderboard");
+      dispatch(setLeaderboard({ result: result.data.data }));
+    } catch (error) {
+      toast.error("Cannot fetch Data!");
+    }
   };
 
   useEffect(() => {
