@@ -23,6 +23,9 @@ import {
   setClickedCardNum,
 } from "../../../redux/slices/tetrisSlice";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { BorderPanel } from "../../../components/Common/Panels";
+import { Button, styled } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const QuestBox = (props: QuestBoxType) => {
   const [activeState, setActiveState] = useState<number>(0);
@@ -53,10 +56,16 @@ const QuestBox = (props: QuestBoxType) => {
     console.log(open);
   }, [open]);
 
+  let theme = createTheme({
+    shape: {
+      borderRadius: 10,
+    },
+  });
+
   return (
-    <div>
+    <BorderPanel>
       <div
-        className={`w-[180px] col-span-1 rounded-[20px] bg-[#030A13] flex flex-col justify-between cursor-pointer
+        className={`w-[180px] col-span-1 rounded-2xl  flex flex-col justify-between cursor-pointer
         ${
           activeState === 2
             ? "active_card"
@@ -68,55 +77,79 @@ const QuestBox = (props: QuestBoxType) => {
         onMouseEnter={toggleHover}
         onMouseLeave={toggleHover}
         key={props.index}
-        onClick={async () => {
-          dispatch(setClickedCardNum({ clickedCardNum: props.index }));
-          console.log("🤐", props.index);
-          handleOpen();
-        }}
+        // onClick={async () => {
+        //   dispatch(setClickedCardNum({ clickedCardNum: props.index }));
+        //   console.log("🤐", props.index);
+        //   handleOpen();
+        // }}
       >
-        <div className="relative flex justify-between">
-          <img
-            src={props.thumbnail}
-            className="rounded-[20px]"
-            width={180}
-            height={90}
-            alt="thumbnail"
-          />
-          <div className="absolute top-[50px] bottom-0 left-0 right-0 rounded-[10px] linearGradient"></div>
-          <div className="absolute left-[12px] bottom-[4px] right-[12px] h-[38px] flex">
-            <div className="text-white text-[16px] flex items-center pl-2">
-              {props.title}
-            </div>
-          </div>
+        <div className="relative flex justify-between w-full border-b px-6 py-2 bg-sky-600/5 border-[#132236] rounded-t-2xl">
+          {props.title}
         </div>
-        <div className="px-[20px] py-[8px] mb-2 flex flex-col justify-between">
-          <div className="text-[#F3F3F3] text-[14px] mb-4">
-            {props.subTitle}:&nbsp;
+        <div className="px-[15px] py-[8px] flex flex-col justify-between bg-[#040A12] rounded-b-2xl">
+          <div className="text-[#F3F3F3] text-[13px] mb-4">
+            {props.untilClaim}/{props.untilClaim}:&nbsp;
             <span className="text-[#929298]">
-              {minifyString(props.description, 20)}
+              {minifyString(props.description, 50)}
             </span>
           </div>
           <div className="flex w-full justify-center bottom-1">
-            {activeState !== 2 ? (
-              <div className="flex items-center gap-2 ">
-                <img
-                  src={props.icon}
-                  className="h-[16px] rounded-full"
-                  alt="icon"
-                  width={16}
-                  height={16}
-                />
-                <div className="text-[#F3F3F3] text-[18px]">{props.amount}</div>
-              </div>
-            ) : (
+            {activeState == 2 ? (
               <div className="flex items-center">
                 <CheckCircleOutlineIcon color="success" />
+              </div>
+            ) : (
+              <div className="flex flex-row gap-4">
+                <div className="flex flex-row items-center gap-2">
+                  <img
+                    src={props.icon}
+                    className="h-[16px] rounded-full"
+                    alt="icon"
+                    width={16}
+                    height={16}
+                  />
+                  <div className="text-[#F3F3F3] text-[16px]">
+                    {props.amount}
+                  </div>
+                </div>
+                <div>
+                  <ThemeProvider theme={theme}>
+                    {activeState !== 3 && activeState !== 2 ? (
+                      <Button
+                        variant="contained"
+                        size="small"
+                        color="success"
+                        style={{ textTransform: "none", padding: "0px" }}
+                        onClick={() => {
+                          window.open(
+                            "https://questify-game-tetrisk-testing.web.app",
+                            "_blank"
+                          );
+                        }}
+                      >
+                        Play
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        size="small"
+                        color="success"
+                        style={{ textTransform: "none", padding: "0px" }}
+                        onClick={() => {
+                          console.log("Claim");
+                        }}
+                      >
+                        Claim
+                      </Button>
+                    )}
+                  </ThemeProvider>
+                </div>
               </div>
             )}
           </div>
         </div>
       </div>
-    </div>
+    </BorderPanel>
   );
 };
 

@@ -18,7 +18,7 @@ const QuestLeaderboard = () => {
 
   const fetchLeaderboard = async () => {
     try {
-      var result = await apiCaller.get("tetrises/fetchLeaderboard");
+      var result = await apiCaller.get("users/fetchLeaderboard");
       dispatch(setLeaderboard({ result: result.data.data }));
     } catch (error) {
       toast.error("Cannot fetch Data!");
@@ -64,7 +64,7 @@ const QuestLeaderboard = () => {
   }, [winners]);
 
   return (
-    <BorderPanel style=" ">
+    <BorderPanel>
       <h1 className="text-[20px] mx-4 my-3 text-md  text-gray-200">
         Quest Leaderboard
       </h1>
@@ -73,7 +73,7 @@ const QuestLeaderboard = () => {
           <QuestBorderMenuItem key={index} {...item} />
         ))}
       </div>
-      <div className="flex justify-between  pt-[30px] mb-3">
+      <div className="flex justify-between pt-[30px] mb-3">
         {sortedWinners.slice(0, 3).map((leaderItem, index) => (
           <LeaderXPItem
             key={index}

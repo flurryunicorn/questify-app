@@ -23,7 +23,11 @@ import { QUESTIFY_QUESTS } from "../../../data";
 export interface QuestBannerProps {
   title: string;
   id: number;
+  reward?: string;
+  icon?: string;
 }
+
+const isSmallDevice = window.matchMedia("(max-width: 600px)").matches;
 
 const stylex = {
   position: "absolute" as "absolute",
@@ -132,158 +136,176 @@ const QuestBanner = (props: QuestBannerProps) => {
   };
 
   return (
-    <BorderPanel>
-      <div className="flex w-full px-4 py-2 bg-sky-600/5 border-[#132236] border-b  ">
-        <div className="font-bold text-sm  text-gray-200 ">{props.title}</div>
-      </div>
+    <div className="w-full">
+      <BorderPanel>
+        <div className="flex w-full px-6 py-2 bg-sky-600/5 border-[#132236] border-b justify-between">
+          <div className="flex items-center">
+            <div className="w-[30px] mr-3">
+              <img src={props.icon}></img>
+            </div>
+            <div className="quest_banner_title mr-10">{props.title}</div>
+            <div>{!isSmallDevice && <span>Completion:</span>}</div>
+          </div>
+          {!isSmallDevice && (
+            <div className="flex items-center">
+              <span className="text-[#8D8D8D]">Reward:&nbsp;</span>
+              {props.reward}
+            </div>
+          )}
+        </div>
 
-      <div className="flex flex-row justify-center items-center content-center pt-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 custom-2xl:grid-cols-5 gap-4 mb-8 justify-between">
-          {props.id == 0 &&
-            QUESTIFY_QUESTS.slice(0, 4).map((quest, index) => (
-              <div>
+        <div className="flex flex-row justify-center items-center content-center pt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 custom-2xl:grid-cols-5 xl:gap-6 gap-3 mb-8 justify-between">
+            {props.id == 0 &&
+              QUESTIFY_QUESTS.slice(0, 4).map((quest, index) => (
+                <div>
+                  <QuestBox
+                    key={index}
+                    {...quest}
+                    index={index}
+                    active={questStatus[index]}
+                  />
+                </div>
+              ))}
+            {props.id == 1 &&
+              QUESTIFY_QUESTS.slice(4).map((quest, index) => (
                 <QuestBox
                   key={index}
                   {...quest}
-                  index={index}
-                  active={questStatus[index]}
+                  index={index + 4}
+                  active={questStatus[index + 4]}
                 />
-              </div>
-            ))}
-          {props.id == 1 &&
-            QUESTIFY_QUESTS.slice(4).map((quest, index) => (
-              <QuestBox
-                key={index}
-                {...quest}
-                index={index + 4}
-                active={questStatus[index + 4]}
-              />
-            ))}
+              ))}
+          </div>
         </div>
-      </div>
-      <Modal open={modalOpen} onClose={handleClose}>
-        <Card sx={stylex}>
-          <CardMedia
-            style={{ background: "white" }}
-            component="img"
-            height="140"
-            image={QUESTIFY_QUESTS[clickedCardNum].thumbnail}
-          />
-          <CardContent
-            sx={{
-              background: "black",
-              color: "white",
-            }}
-          >
-            <Typography gutterBottom variant="h5" component="div">
-              {QUESTIFY_QUESTS[clickedCardNum].title} (
-              {clickedCardNum < 4
-                ? questifyCount[clickedCardNum]
-                : tetrisCount[clickedCardNum - 4]}
-              /{QUESTIFY_QUESTS[clickedCardNum].untilClaim})
-            </Typography>
-            <Typography variant="body2" color="">
-              {QUESTIFY_QUESTS[clickedCardNum].fullDescription}
-            </Typography>
-          </CardContent>
-          <CardActions
-            sx={{
-              background: "black",
-              color: "white",
-              display: "flex",
-              justifyContent: "end",
-            }}
-          >
-            {questStatus[clickedCardNum] == 2 && (
-              <Button
-                size="small"
-                color="success"
-                variant="outlined"
-                sx={{ marginRight: "10px" }}
-              >
-                Claimed
-              </Button>
-            )}
-            {questStatus[clickedCardNum] == 1 && (
-              <Button
-                size="small"
-                color="success"
-                variant="contained"
-                sx={{ marginRight: "10px" }}
-                onClick={async () => {
-                  try {
-                    if (clickedCardNum < 4) {
-                      const result = await apiCaller.post(
-                        "users/receiveQuest",
-                        {
-                          wallet: localStorage.getItem("connectedAddress"),
-                          index: clickedCardNum,
-                        }
-                      );
-                      dispatch(setMyInfo({ myInfo: result.data.existingUser }));
-                      // console.log("😁😁", result);
-                      dispatch(
-                        setMyXP({ myXP: result.data.existingUser?.totalXP })
-                      );
-                    } else {
-                      const result = await apiCaller.post(
-                        "tetrises/receiveQuest",
-                        {
-                          wallet: localStorage.getItem("connectedAddress"),
-                          index: clickedCardNum,
-                        }
-                      );
-                      dispatch(setMyInfo({ myInfo: result.data.existingUser }));
-                      // console.log("😁😁", result);
-                      dispatch(
-                        setMyXP({ myXP: result.data.existingUser?.totalXP })
-                      );
-                      dispatch(setModalOpen({ modalOpen: false }));
+        <Modal open={modalOpen} onClose={handleClose}>
+          <Card sx={stylex}>
+            <CardMedia
+              style={{ background: "white" }}
+              component="img"
+              height="140"
+              image={QUESTIFY_QUESTS[clickedCardNum].thumbnail}
+            />
+            <CardContent
+              sx={{
+                background: "black",
+                color: "white",
+              }}
+            >
+              <Typography gutterBottom variant="h5" component="div">
+                {QUESTIFY_QUESTS[clickedCardNum].title} (
+                {clickedCardNum < 4
+                  ? questifyCount[clickedCardNum]
+                  : tetrisCount[clickedCardNum - 4]}
+                /{QUESTIFY_QUESTS[clickedCardNum].untilClaim})
+              </Typography>
+              <Typography variant="body2" color="">
+                {QUESTIFY_QUESTS[clickedCardNum].fullDescription}
+              </Typography>
+            </CardContent>
+            <CardActions
+              sx={{
+                background: "black",
+                color: "white",
+                display: "flex",
+                justifyContent: "end",
+              }}
+            >
+              {questStatus[clickedCardNum] == 2 && (
+                <Button
+                  size="small"
+                  color="success"
+                  variant="outlined"
+                  sx={{ marginRight: "10px" }}
+                >
+                  Claimed
+                </Button>
+              )}
+              {questStatus[clickedCardNum] == 1 && (
+                <Button
+                  size="small"
+                  color="success"
+                  variant="contained"
+                  sx={{ marginRight: "10px" }}
+                  onClick={async () => {
+                    try {
+                      if (clickedCardNum < 4) {
+                        const result = await apiCaller.post(
+                          "users/receiveQuest",
+                          {
+                            wallet: localStorage.getItem("connectedAddress"),
+                            index: clickedCardNum,
+                          }
+                        );
+                        dispatch(
+                          setMyInfo({ myInfo: result.data.existingUser })
+                        );
+                        // console.log("😁😁", result);
+                        dispatch(
+                          setMyXP({ myXP: result.data.existingUser?.totalXP })
+                        );
+                      } else {
+                        const result = await apiCaller.post(
+                          "tetrises/receiveQuest",
+                          {
+                            wallet: localStorage.getItem("connectedAddress"),
+                            index: clickedCardNum,
+                          }
+                        );
+                        dispatch(
+                          setMyInfo({ myInfo: result.data.existingUser })
+                        );
+                        // console.log("😁😁", result);
+                        dispatch(
+                          setMyXP({ myXP: result.data.existingUser?.totalXP })
+                        );
+                        dispatch(setModalOpen({ modalOpen: false }));
+                      }
+                    } catch (error) {
+                      toast.error("Backend Error!");
                     }
-                  } catch (error) {
-                    toast.error("Backend Error!");
-                  }
-                }}
-              >
-                Claim quests
-              </Button>
-            )}
-            {questStatus[clickedCardNum] == 0 &&
-            (clickedCardNum == 2 || clickedCardNum == 3) ? (
-              <Button
-                size="small"
-                color="success"
-                variant="contained"
-                sx={{ marginRight: "10px" }}
-                onClick={() => {
-                  dispatch(setDepositModalOpen({ depositModalOpen: true }));
-                  dispatch(setModalOpen({ modalOpen: false }));
-                }}
-              >
-                Deposit
-              </Button>
-            ) : (
-              questStatus[clickedCardNum] == 0 && (
+                  }}
+                >
+                  Claim quests
+                </Button>
+              )}
+              {questStatus[clickedCardNum] == 0 &&
+              (clickedCardNum == 2 || clickedCardNum == 3) ? (
                 <Button
                   size="small"
                   color="success"
                   variant="contained"
                   sx={{ marginRight: "10px" }}
                   onClick={() => {
-                    window.open(
-                      "https://questify-game-tetrisk-testing.web.app",
-                      "_blank"
-                    );
+                    dispatch(setDepositModalOpen({ depositModalOpen: true }));
+                    dispatch(setModalOpen({ modalOpen: false }));
                   }}
                 >
-                  Play
+                  Deposit
                 </Button>
-              )
-            )}
-          </CardActions>
-        </Card>
-      </Modal>
-    </BorderPanel>
+              ) : (
+                questStatus[clickedCardNum] == 0 && (
+                  <Button
+                    size="small"
+                    color="success"
+                    variant="contained"
+                    sx={{ marginRight: "10px" }}
+                    onClick={() => {
+                      window.open(
+                        "https://questify-game-tetrisk-testing.web.app",
+                        "_blank"
+                      );
+                    }}
+                  >
+                    Play
+                  </Button>
+                )
+              )}
+            </CardActions>
+          </Card>
+        </Modal>
+      </BorderPanel>
+    </div>
   );
 };
 

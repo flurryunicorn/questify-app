@@ -150,3 +150,11 @@
     bottom: 5px;
   }
 }
+
+.quest_banner_title{
+  color: #FFF;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+}

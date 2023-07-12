@@ -165,7 +165,7 @@ const Header = () => {
         localStorage.setItem("txHash", sendResponse.transactionHash);
 
         try {
-          const result = await apiCaller.post("users/deposit", {
+          const result = await apiCaller.post("token/deposit", {
             wallet: accounts[0].address,
             txHash: sendResponse.transactionHash,
             amount: amount,
@@ -399,12 +399,20 @@ const Header = () => {
                   >
                     Explore
                   </MenuItem>
+
                   <MenuItem
                     onClick={() => {
                       navigate("/quests");
                     }}
                   >
                     Quests
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      navigate("/games");
+                    }}
+                  >
+                    Games
                   </MenuItem>
                 </Menu>
               </div>
@@ -511,7 +519,7 @@ const Header = () => {
 
                         try {
                           const result = await apiCaller.post(
-                            "users/claimAmount",
+                            "token/withdraw",
                             {
                               walletAddress: accounts[0].address,
                               amount: withdrawAmount,

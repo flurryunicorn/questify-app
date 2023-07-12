@@ -6,6 +6,7 @@ import QuestProgress from "./QuestProgress";
 import { useSelector, useDispatch } from "react-redux";
 import { WalletWindowKey } from "@sei-js/core";
 import { SeiWalletContext } from "@sei-js/react";
+import Grid from "@mui/material/Grid";
 
 const Quests = () => {
   const { supportedWallets, connect, disconnect, installedWallets } =
@@ -38,19 +39,37 @@ const Quests = () => {
   return (
     <div>
       <div
-        className="grid lg-grid-cols-17 xl:grid-cols-17 md:grid-cols-1 lg:gap-[30px] grid-cols-1 gap-[5px] 
-      ml-[5px] lg:ml-[100px] lg:mr-[20px] lg:mt-[100px] md:mt-[100px] sm:mt-[100px] mr-[10px] mt-[50px]
+        className="lg:gap-[30px] gap-[5px] ml-[5px] lg:ml-[20px] xl:ml-[50px] 2xl:ml-[100px] lg:mr-[20px] lg:mt-[100px] md:mt-[100px] sm:mt-[100px] mr-[10px] mt-[50px]
       text-gray-200"
       >
-        <GeneralPanel style="xl:col-span-12 lg:col-span-12 md-col-span-12 col-span-1">
-          <QuestBanner title="Questify Quests" id={0} />
-          <QuestBanner title="Tetrisk Quests" id={1} />
-        </GeneralPanel>
-
-        <GeneralPanel style="xl:col-span-5 lg:col-span-5 md:col-span-1 col-span-1">
-          <QuestLeaderboard />
-          <QuestProgress />
-        </GeneralPanel>
+        <Grid
+          container
+          spacing={0}
+          columns={{ xl: 12, lg: 12, md: 12, sm: 4, xs: 4 }}
+        >
+          <Grid item xl={8} lg={8} md={8} sm={4} xs={4}>
+            <GeneralPanel>
+              <QuestBanner
+                title="Questify Quests"
+                id={0}
+                icon="/images/logos/main-logo.png"
+                reward="Compass NFT + 550"
+              />
+              <QuestBanner
+                title="Tetrisk Quests"
+                id={1}
+                icon="/images/logos/tetris-logo.png"
+                reward="Tetrisk WL + 550"
+              />
+            </GeneralPanel>
+          </Grid>
+          <Grid item xl={3} lg={4} md={4} sm={4} xs={4}>
+            <GeneralPanel>
+              <QuestLeaderboard />
+              {/* <QuestProgress /> */}
+            </GeneralPanel>
+          </Grid>
+        </Grid>
       </div>
     </div>
   );

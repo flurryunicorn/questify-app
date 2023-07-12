@@ -19,7 +19,7 @@ const LeaderXPItem = (props: LeaderItemType) => {
     <div
       className={`${
         props.no % 2 == 0 ? "mt-[10px]" : "mt-[20px]"
-      }  mx-1.5 rounded-md w-[103px] h-[104px] bg-cyan-400/10`}
+      }  mx-1.5 rounded-md w-1/3 h-[104px] bg-cyan-400/10`}
     >
       <div className="rounded-full">
         <div className="flex justify-center mt-[-28px] mb-[6px]">

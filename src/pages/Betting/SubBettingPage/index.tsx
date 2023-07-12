@@ -44,7 +44,7 @@ const SubBettingPage = () => {
   const [sortedWinners, setSortedWinners] = useState<any>([]);
   const fetchLeaderboard = async () => {
     try {
-      var result = await apiCaller.get("tetrises/fetchLeaderboard");
+      var result = await apiCaller.get("users/fetchLeaderboard");
       dispatch(setLeaderboard({ result: result.data.data }));
     } catch (error) {
       toast.error("Cannot fetch Data!");
