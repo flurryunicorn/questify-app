@@ -25,6 +25,7 @@
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
+    "react-lazy-load-image-component": "^1.6.0",
     "react-material-ui-carousel": "^3.4.2",
     "react-pro-sidebar": "^1.0.0",
     "react-redux": "^8.0.5",

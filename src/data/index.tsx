@@ -4,6 +4,7 @@ import { BorderMenuItemProps } from "../components/Common/Menus/BorderMenuItem";
 import { MenuItemType } from "../components/Common/Menus/GeneralMenu";
 import { SliderType } from "../components/Explore/BannerSlide";
 import { QuestBoxType } from "../pages/Quests/QuestBox";
+import { GameContentType } from "../pages/Games";
 
 export const LEADERBOARD_SUB_MENUITEMS: BorderMenuItemProps[] = [
   {
@@ -533,4 +534,63 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
   //     "Play the game on hard level and claim your quests. Try!!!",
   //   untilClaim: 1,
   // },
+];
+
+export const GAME_CONTENTS: GameContentType[] = [
+  {
+    title: "Tetrisk",
+    thumbnail: "/images/games/thumbnail/Tetris.png",
+  },
+  {
+    title: "Flappy Bird",
+    thumbnail: "/images/games/thumbnail/flappy.png",
+  },
+  {
+    title: "Chess",
+    thumbnail: "/images/games/thumbnail/Chess.png",
+  },
+  {
+    title: "2048",
+    thumbnail: "/images/games/thumbnail/2048.png",
+  },
+  {
+    title: "Aavegotchi",
+    thumbnail: "/images/games/thumbnail/aavegotchi.png",
+  },
+  {
+    title: "World Wide Webb",
+    thumbnail: "/images/games/thumbnail/WorldWideWebb.png",
+  },
+  {
+    title: "Double Jump",
+    thumbnail: "/images/games/thumbnail/DoubleJump.png",
+  },
+  {
+    title: "Decentraland",
+    thumbnail: "/images/games/thumbnail/Decentraland.png",
+  },
+  {
+    title: "Halo",
+    thumbnail: "/images/games/thumbnail/Halo.png",
+  },
+  {
+    title: "ALR",
+    thumbnail: "/images/games/thumbnail/ALR.png",
+  },
+  {
+    title: "Mixmob",
+    thumbnail: "/images/games/thumbnail/Mixmob.png",
+  },
+  {
+    title: "MiniRoyale",
+    thumbnail: "/images/games/thumbnail/MiniRoyale.png",
+  },
+  {
+    title: "Heroes & Empires",
+    thumbnail: "/images/games/thumbnail/HeroesEmpires.png",
+  },
+  {
+    title: "Candy Crush",
+    thumbnail: "/images/games/thumbnail/CandyCrush.png",
+  },
 ];
