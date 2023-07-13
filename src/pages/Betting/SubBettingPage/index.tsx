@@ -164,7 +164,6 @@ const SubBettingPage = () => {
           </div>
         </div>
 
-        {/* <div className="grid mt-4 custom-2xl:grid-cols-5 xl:grid-cols-5 xl:gap-12 gap-0 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 xs:grid-cols-1"> */}
         <div className="custom-2xl:col-span-3 xl:col-span-3 lg:col-span-2 md:col-span-1 sm:col-span-1 xs:col-span-1 mt-6">
           <Description
             title={"Tetrisk"}
@@ -173,15 +172,13 @@ const SubBettingPage = () => {
             }
           />
         </div>
-        {/* <div className="pr-8 custom-2xl:col-span-2 xl:col-span-2 lg:col-span-2 md:col-span-1 sm:col-span-1 xs:col-span-1">
-    <GameDivision />
-  </div> */}
 
         <div className="flex gap-2">
           {LEADERBOARD_SUB_MENUITEMS.map((item, index) => (
             <BorderMenuItem key={index} {...item} />
           ))}
         </div>
+
         <BorderPanel style="my-6 !p-0">
           <div className="w-full h-[40px] border-[#132236] border-b bg-cyan-500/5 rounded-t-lg">
             <div className="flex gap-8 text-[14px] pt-[10px] pl-[20px]">

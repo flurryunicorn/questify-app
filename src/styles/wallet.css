@@ -158,3 +158,82 @@
   font-weight: 500;
   line-height: 150%;
 }
+
+
+
+
+ /*Glow Effect*/
+
+.glow_icon a {
+  position: relative; 
+  display: block;
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  line-height: 63px;
+  background: #333;
+  border-radius: 50%;
+  font-size: 30px;
+  color: #666;
+  transition: .5s;
+}
+
+.glow_icon a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #006400;
+  transition: .5s;
+  transform: scale(.9);
+  z-index: -1;
+}
+
+.glow_icon a:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #006400;
+}
+
+.glow_icon a:hover {
+  color: #006400;
+  box-shadow: 0 0 5px #006400;
+  text-shadow: 0 0 5px #006400;
+}
+/*End of Glow Effect*/
+
+
+/* Game Card Image Effect */
+
+
+.card-image img {
+	transform: scale3d(1, 1, 1);
+	transition: transform 2.5s ease-in-out;
+}
+
+.card-image:hover img,
+.card-image:focus img {
+	transform: scale3d(1.1, 1.1, 1);
+	transition: transform 5s ease-in-out;
+}
+
+
+/* End of Game Card Image Effect */
+
+
+.title-shadow-text{
+  font-weight: 1000;
+  font-size: 30px;
+  color: #edf2f7;
+  text-shadow: 0 0 30px #9370DB;
+}
+
+.paragraph-shadow-text{
+  font-size: 13px;
+  font-weight: 500;
+  color: #DDE2E8;
+  margin-top: 2rem;
+  text-shadow: 0 0 30px #9370DB;
+}

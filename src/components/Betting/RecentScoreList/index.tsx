@@ -98,7 +98,7 @@ const RecentScoreList = (props: DetailedLeaderItemType) => {
       <div className="w-[10%] justify-center">
         <div className="w-[34px]">
           <img
-            src="/images/betting/illustration-hero.svg"
+            src="/images/betting/tile.svg"
             alt="avatar"
             width={34}
             height={34}

@@ -148,8 +148,15 @@ const QuestBanner = (props: QuestBannerProps) => {
           </div>
           {!isSmallDevice && (
             <div className="flex items-center">
-              <span className="text-[#8D8D8D]">Reward:&nbsp;</span>
+              <span className="text-[#8D8D8D] mr-1">Reward:</span>
               {props.reward}
+              <img
+                src="/images/quests/xp.png"
+                className="h-[16px] rounded-full ml-1"
+                alt="icon"
+                width={16}
+                height={16}
+              />
             </div>
           )}
         </div>

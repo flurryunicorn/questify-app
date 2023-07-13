@@ -6,10 +6,15 @@ import {
 } from "react-router-dom";
 import routes from "./routes/routes";
 import Header from "./components/Layout/Header";
+import ScrollToTop from "react-scroll-to-top";
 
 function App() {
   return (
     <div>
+      <ScrollToTop
+        smooth
+        style={{ borderRadius: "20px", background: "black" }}
+      />
       <Router>
         <Header />
         <Routes>

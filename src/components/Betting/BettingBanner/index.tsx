@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-
-import { SmallButton } from "../../../components/Common/Buttons";
 import { useNavigate } from "react-router-dom";
+import Grid from "@mui/material/Grid";
+import { Button } from "@mui/material";
+import { WEEK_GAMES } from "../../../data";
+
 export type BettingBannerType = {
   title: string;
   backgroundImage: string;
@@ -11,72 +13,62 @@ export type BettingBannerType = {
   path?: string;
 };
 
+const isSmallDevice = window.matchMedia("(max-width: 600px)").matches;
+
 const BettingBanner = (props: BettingBannerType) => {
   const [active, setActive] = useState(0);
-  const gotoPath = () => {};
 
   const navigate = useNavigate();
 
   return (
-    <div className="relative min-h-[354px] rounded-lg overflow-hidden">
-      <img
-        src={props.backgroundImage}
-        className="min-h-[354px] rounded-lg"
-        alt={props.title}
-      />
-      <div className="absolute bg-black/20  bg-gradient-to-br from-emerald-500/40 to-cyan-500/20 bottom-0 left-0 w-full h-full rounded-lg"></div>
-
-      <div className="absolute bg-black/40 bottom-0 left-0 w-full h-[300px] shadow-xl md:backdrop-blur flex md:flex-row flex-col">
-        <div className="ml-[20px] lg:mt-[0] mt-[20px]">
-          <h2
-            className="text-[30px] font-[700]  text-gray-200 pb-0"
-            style={{ textShadow: "0 0 30px #9370DB" }}
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <div className="w-[34px]">
-                <img
-                  src="/images/betting/illustration-hero.svg"
-                  alt="avatar"
-                  style={{ marginTop: "0px", paddingRight: "5px" }}
-                  width={34}
-                  height={34}
-                  className="rounded-lg w-[34px] h-[34px]"
-                />
-              </div>
+    <div className="relative h-[400px] rounded-xl overflow-hidden bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+      <Grid
+        container
+        spacing={0}
+        columns={{ xl: 12, lg: 12, md: 12, sm: 4, xs: 4 }}
+      >
+        <Grid item xl={3.5} lg={3.5} md={3.5} sm={4} xs={4}>
+          <div className="mx-[20px] mt-[20px]">
+            <div className="title-shadow-text xs:text-[20px]">
               {props.title}
             </div>
-          </h2>
-          <div className="w-[60%]">
-            <p
-              className={`text-[15px] font-[500] text-slate-100 mt-2 ${
-                props.button ? "pb-5" : "pb-12"
-              }`}
-              style={{
-                textShadow: "0 0 1px #9370DB",
-                marginTop: "0",
-                marginBottom: "-18%",
-              }}
+            <div className="paragraph-shadow-text">{props.content}</div>
+            <div className="mt-[10px] flex flex-row items-center">
+              +75
+              <img
+                src="/images/logos/xp.png"
+                className="h-[20px] ml-1 mr-3"
+              ></img>
+              +100
+              <img
+                src="/images/logos/tetris-exp.png"
+                className="h-[20px] ml-1"
+              ></img>
+            </div>
+            <Button
+              color="success"
+              variant="contained"
+              style={{ marginTop: "10px" }}
+              onClick={() => navigate("/subbetting")}
             >
-              {props.content}
-            </p>
+              {props.button}
+            </Button>
           </div>
-        </div>
-        <div className="mt-[20px] mx-[20px]">
-          {props.button && (
-            <div style={{}}>
-              <SmallButton
-                caption={props.button}
-                onClick={() => navigate("/subbetting")}
+        </Grid>
+
+        <Grid item xl={5} lg={5} md={5} sm={4} xs={4}>
+          {!isSmallDevice && (
+            <div className="flex justify-center align-middle items-center h-[350px]">
+              <img
+                src={props.backgroundImage}
+                className=" rounded-lg w-[40%]"
+                alt={props.title}
               />
             </div>
           )}
-        </div>
-      </div>
+        </Grid>
+      </Grid>
+      <div className="absolute bg-black/40 bottom-0 left-0 w-full h-[00px] shadow-xl md:backdrop-blur flex md:flex-row flex-col"></div>
     </div>
   );
 };

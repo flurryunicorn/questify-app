@@ -83,7 +83,7 @@ const QuestBox = (props: QuestBoxType) => {
         //   handleOpen();
         // }}
       >
-        <div className="relative flex justify-between w-full border-b px-6 py-2 bg-sky-600/5 border-[#132236] rounded-t-2xl">
+        <div className="relative flex justify-between w-full border-b px-6 py-2 border-[#132236] rounded-t-2xl bg-gradient-to-b from-transparent to-black-70 backdrop-blur">
           {props.title}
         </div>
         <div className="px-[15px] py-[8px] flex flex-col justify-between bg-[#040A12] rounded-b-2xl">

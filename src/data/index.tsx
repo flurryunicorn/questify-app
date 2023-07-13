@@ -5,6 +5,7 @@ import { MenuItemType } from "../components/Common/Menus/GeneralMenu";
 import { SliderType } from "../components/Explore/BannerSlide";
 import { QuestBoxType } from "../pages/Quests/QuestBox";
 import { GameContentType } from "../pages/Games";
+import { BettingBannerType } from "../components/Betting/BettingBanner";
 
 export const LEADERBOARD_SUB_MENUITEMS: BorderMenuItemProps[] = [
   {
@@ -592,5 +593,36 @@ export const GAME_CONTENTS: GameContentType[] = [
   {
     title: "Candy Crush",
     thumbnail: "/images/games/thumbnail/CandyCrush.png",
+  },
+];
+
+export const BETTING_BANNER_ITEMS: BettingBannerType[] = [
+  {
+    title: "Tetrisk is here!",
+    backgroundImage: "/images/betting/tile.svg",
+    content:
+      "Damage with Legendary Weapons. Play now to earn infinite rewards, and claim your airdrop!",
+    button: "Launch Now",
+  },
+  {
+    title: "Fable League is here!",
+    backgroundImage: "/images/betting/cyberBanner.png",
+    content:
+      "Damage with Legendary Weapons. Play now to earn infinite rewards, and claim your airdrop!",
+    button: "Launch Now",
+  },
+  {
+    title: "Defi Land is here!",
+    backgroundImage: "/images/games/thumbnail/Decentraland.png",
+    content:
+      "Damage with Legendary Weapons. Play now to earn infinite rewards, and claim your airdrop!",
+    button: "Launch Now",
+  },
+  {
+    title: "Buccaneer's Hunt is here!",
+    backgroundImage: "/images/games/thumbnail/MiniRoyale.png",
+    content:
+      "Damage with Legendary Weapons. Play now to earn infinite rewards, and claim your airdrop!",
+    button: "Launch Now",
   },
 ];
