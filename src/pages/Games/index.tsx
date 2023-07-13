@@ -61,14 +61,15 @@ const Games = () => {
                 //   console.log("selected");
                 // }}
               >
-                <div className="card-image overflow-hidden w-full rounded-t-2xl">
-                  <LazyLoadImage
+                <div className="img-hover-zoom--brightness overflow-hidden w-full rounded-t-2xl">
+                  {/* <LazyLoadImage
                     src={game.thumbnail}
                     effect="blur"
-                    className="rounded-t-2xl"
+                    className="img-hover-zoom--blur rounded-t-2xl"
                     width="100%"
                     height={"100%"}
-                  />
+                  /> */}
+                  <img src={game.thumbnail}></img>
                 </div>
                 <div className="flex md:flex-row xs:flex-col-reverse py-2">
                   <div className="text-[16px] text-center w-full">

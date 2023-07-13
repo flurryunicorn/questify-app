@@ -219,6 +219,24 @@
 	transition: transform 5s ease-in-out;
 }
 
+/* Hover Container */
+.img-hover-zoom {
+  overflow: hidden; /* Removing this will break the effects */
+}
+
+/* Brightness-zoom Container */
+.img-hover-zoom--brightness img {
+  transition: transform 2s, filter 1.5s ease-in-out;
+  transform-origin: center center;
+  filter: brightness(70%);
+}
+
+/* The Transformation */
+.img-hover-zoom--brightness:hover img {
+  filter: brightness(100%);
+  transform: scale(1.3);
+}
+
 
 /* End of Game Card Image Effect */
 
@@ -237,3 +255,5 @@
   margin-top: 2rem;
   text-shadow: 0 0 30px #9370DB;
 }
+
+
