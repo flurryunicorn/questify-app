@@ -59,7 +59,7 @@ const ClaimBox = (props: ClaimBoxType) => {
     <div
       className={`w-[200px] col-span-1  bg-[#030A13] flex flex-col justify-between cursor-pointer border-2 border-blue-400 rounded-2xl`}
     >
-      <div className="relative flex justify-center pt-1 border-b-2 border-blue-400 ">
+      <div className="relative flex justify-center pt-1 border-b-2 rounded-t-2xl border-blue-400 bg-gradient-to-b from-green-900">
         <img src={props.thumbnail} width={70} alt="thumbnail" />
         <div className="absolute top-[50px] bottom-0 left-0 right-0 rounded-[10px] bg-green linearGradient"></div>
         <div className="absolute left-[12px] bottom-[4px] right-[12px] flex">
