@@ -3,9 +3,10 @@ import { DetailedLeaderItemType } from "../components/Betting/ListItem";
 import { BorderMenuItemProps } from "../components/Common/Menus/BorderMenuItem";
 import { MenuItemType } from "../components/Common/Menus/GeneralMenu";
 import { SliderType } from "../components/Explore/BannerSlide";
-import { QuestBoxType } from "../pages/Quests/QuestBox";
+import { QuestBoxType } from "../components/Quests/QuestBox";
 import { GameContentType } from "../pages/Games";
 import { BettingBannerType } from "../components/Betting/BettingBanner";
+import { ClaimBoxType } from "../components/Quests/ClaimBox";
 
 export const LEADERBOARD_SUB_MENUITEMS: BorderMenuItemProps[] = [
   {
@@ -624,5 +625,40 @@ export const BETTING_BANNER_ITEMS: BettingBannerType[] = [
     content:
       "Damage with Legendary Weapons. Play now to earn infinite rewards, and claim your airdrop!",
     button: "Launch Now",
+  },
+];
+
+export const CLAIM_BOX_ITEMS: ClaimBoxType[] = [
+  {
+    category: "Questify",
+    active: 1,
+    amount: 500,
+    title: "Compass",
+    description: "You won a passport, claim it now!",
+    thumbnail: "/images/logos/departLogo.png",
+  },
+  {
+    category: "Questify",
+    active: 1,
+    amount: 500,
+    title: "Tetrisk WL",
+    description: "You won a passport, claim it now!",
+    thumbnail: "/images/logos/departLogo.png",
+  },
+  {
+    category: "Questify",
+    active: 1,
+    amount: 500,
+    title: "Compass",
+    description: "You won a passport, claim it now!",
+    thumbnail: "/images/logos/departLogo.png",
+  },
+  {
+    category: "Questify",
+    active: 1,
+    amount: 500,
+    title: "Compass",
+    description: "You won a passport, claim it now!",
+    thumbnail: "/images/logos/departLogo.png",
   },
 ];

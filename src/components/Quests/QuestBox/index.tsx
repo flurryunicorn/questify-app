@@ -23,7 +23,7 @@ import {
   setClickedCardNum,
 } from "../../../redux/slices/tetrisSlice";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import { BorderPanel } from "../../../components/Common/Panels";
+import { BorderPanel } from "../../Common/Panels";
 import { Button, styled } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 

@@ -1,25 +1,28 @@
-import { toast } from "react-toastify";
-import { BorderPanel } from "../../../components/Common/Panels";
-import QuestBox from "../QuestBox";
-import { QuestBoxType } from "../QuestBox";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+
+import { QUESTIFY_QUESTS, CLAIM_BOX_ITEMS } from "../../../data";
+import { BorderPanel } from "../../Common/Panels";
+import QuestBox from "../QuestBox";
+import ClaimBox from "../ClaimBox";
+import { QuestBoxType } from "../QuestBox";
 import { apiCaller } from "../../../utils/fetcher";
 import { setMyInfo } from "../../../redux/slices/tetrisSlice";
-import { useSelector, useDispatch } from "react-redux";
 import {
   setModalOpen,
   setMyXP,
   setDepositModalOpen,
 } from "../../../redux/slices/tetrisSlice";
 
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import { QUESTIFY_QUESTS } from "../../../data";
+// import Button from "@mui/material/Button";
+// import Typography from "@mui/material/Typography";
+// import Modal from "@mui/material/Modal";
+// import Card from "@mui/material/Card";
+// import CardActions from "@mui/material/CardActions";
+// import CardContent from "@mui/material/CardContent";
+// import CardMedia from "@mui/material/CardMedia";
+
 export interface QuestBannerProps {
   title: string;
   id: number;
@@ -29,18 +32,18 @@ export interface QuestBannerProps {
 
 const isSmallDevice = window.matchMedia("(max-width: 600px)").matches;
 
-const stylex = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  maxWidth: 345,
-  border: 1,
-  borderColor: "#6C9C6E",
-  borderRadius: "20px",
-  font: "IBMPlexMono-Regular",
-  boxShadow: "0 0 10px 0 rgb(43, 100, 50)",
-};
+// const stylex = {
+//   position: "absolute" as "absolute",
+//   top: "50%",
+//   left: "50%",
+//   transform: "translate(-50%, -50%)",
+//   maxWidth: 345,
+//   border: 1,
+//   borderColor: "#6C9C6E",
+//   borderRadius: "20px",
+//   font: "IBMPlexMono-Regular",
+//   boxShadow: "0 0 10px 0 rgb(43, 100, 50)",
+// };
 
 const QuestBanner = (props: QuestBannerProps) => {
   const dispatch = useDispatch();
@@ -161,31 +164,49 @@ const QuestBanner = (props: QuestBannerProps) => {
           )}
         </div>
 
-        <div className="flex flex-row justify-center items-center content-center pt-4">
-          <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 custom-2xl:grid-cols-5 xl:gap-6 gap-3 mb-8 justify-between">
-            {props.id == 0 &&
-              QUESTIFY_QUESTS.slice(0, 4).map((quest, index) => (
-                <div>
+        <div className="flex flex-row justify-center items-center content-center pt-4 mb-4">
+          <div className={isSmallDevice ? "block" : "flex"}>
+            <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 custom-2xl:grid-cols-4 xl:gap-6 gap-3 mb-8 justify-between">
+              {props.id == 0 &&
+                QUESTIFY_QUESTS.slice(0, 4).map((quest, index) => (
+                  <div>
+                    <QuestBox
+                      key={index}
+                      {...quest}
+                      index={index}
+                      active={questStatus[index]}
+                    />
+                  </div>
+                ))}
+              {props.id == 1 &&
+                QUESTIFY_QUESTS.slice(4).map((quest, index) => (
                   <QuestBox
                     key={index}
                     {...quest}
-                    index={index}
-                    active={questStatus[index]}
+                    index={index + 4}
+                    active={questStatus[index + 4]}
                   />
-                </div>
-              ))}
-            {props.id == 1 &&
-              QUESTIFY_QUESTS.slice(4).map((quest, index) => (
-                <QuestBox
-                  key={index}
-                  {...quest}
-                  index={index + 4}
-                  active={questStatus[index + 4]}
-                />
-              ))}
+                ))}
+            </div>
+            <div
+              className={
+                isSmallDevice
+                  ? "flex justify-center"
+                  : "min-w-[250px] flex justify-end items-center"
+              }
+            >
+              {/* <div className="w-[100] flex">asdfasdf</div> */}
+              <ClaimBox
+                title="Compass!"
+                description="You won a passport, claim it now!"
+                amount={50}
+                active={1}
+                thumbnail="/images/logos/departLogo.png"
+              ></ClaimBox>
+            </div>
           </div>
         </div>
-        <Modal open={modalOpen} onClose={handleClose}>
+        {/* <Modal open={modalOpen} onClose={handleClose}>
           <Card sx={stylex}>
             <CardMedia
               style={{ background: "white" }}
@@ -310,7 +331,7 @@ const QuestBanner = (props: QuestBannerProps) => {
               )}
             </CardActions>
           </Card>
-        </Modal>
+        </Modal> */}
       </BorderPanel>
     </div>
   );

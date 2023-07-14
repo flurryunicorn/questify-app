@@ -18,7 +18,7 @@ export const fetcher = async (url: string): Promise<any> => {
   return res.json();
 };
 
-const urlBase = "https://skillbet-backend.herokuapp.com";
+const urlBase = "https://s/killbet-backend.herokuapp.com";
 // const urlBase = "http://192.168.127.99:3004";
 export const apiCaller = axios.create({
   baseURL: `${urlBase}/api`,

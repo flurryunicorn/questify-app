@@ -1,4 +1,4 @@
-import { BorderPanel } from "../../../components/Common/Panels";
+import { BorderPanel } from "../../Common/Panels";
 import { useEffect, useState } from "react";
 import { setMyXP } from "../../../redux/slices/tetrisSlice";
 import { useSelector, useDispatch } from "react-redux";

@@ -21,7 +21,7 @@ const BettingBanner = (props: BettingBannerType) => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative h-[400px] rounded-xl overflow-hidden bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+    <div className="relative h-[400px] rounded-xl overflow-hidden bg-gradient-to-r from-gray-600 to-white">
       <Grid
         container
         spacing={0}
@@ -48,7 +48,13 @@ const BettingBanner = (props: BettingBannerType) => {
             <Button
               color="success"
               variant="contained"
-              style={{ marginTop: "10px" }}
+              style={{
+                marginTop: "10px",
+                textTransform: "none",
+                color: "black",
+                backgroundColor: "cyan",
+                fontWeight: "550",
+              }}
               onClick={() => navigate("/subbetting")}
             >
               {props.button}

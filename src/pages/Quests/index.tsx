@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { GeneralPanel } from "../../components/Common/Panels";
 import QuestLeaderboard from "../../components/Leaderboard/QuestLeaderboard";
-import QuestBanner from "./QuestBanner";
-import QuestProgress from "./QuestProgress";
+import QuestBanner from "../../components/Quests/QuestBanner";
+import QuestProgress from "../../components/Quests/QuestProgress";
 import { useSelector, useDispatch } from "react-redux";
 import { WalletWindowKey } from "@sei-js/core";
 import { SeiWalletContext } from "@sei-js/react";
