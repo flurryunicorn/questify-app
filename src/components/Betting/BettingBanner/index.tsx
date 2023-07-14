@@ -21,7 +21,13 @@ const BettingBanner = (props: BettingBannerType) => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative h-[400px] rounded-xl overflow-hidden bg-gradient-to-r from-gray-600 to-white">
+    <div
+      className={
+        !isSmallDevice
+          ? "relative h-[400px] rounded-xl overflow-hidden bg-gradient-to-r from-gray-500 to-white"
+          : "relative h-[400px] rounded-xl overflow-hidden bg-gradient-to-r from-black to-gray-500"
+      }
+    >
       <Grid
         container
         spacing={0}

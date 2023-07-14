@@ -85,7 +85,7 @@ const ClaimBox = (props: ClaimBoxType) => {
                   width={16}
                   height={16}
                 />
-                <div className="text-[#F3F3F3] text-[18px]">{props.amount}</div>
+                <div className="text-[#F3F3F3] text-[16px]">{props.amount}</div>
                 <div>
                   <ThemeProvider theme={theme}>
                     <Button

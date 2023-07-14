@@ -11,10 +11,10 @@ import ScrollToTop from "react-scroll-to-top";
 function App() {
   return (
     <div>
-      <ScrollToTop
+      {/* <ScrollToTop
         smooth
         style={{ borderRadius: "20px", background: "black" }}
-      />
+      /> */}
       <Router>
         <Header />
         <Routes>

@@ -91,9 +91,9 @@ const QuestBanner = (props: QuestBannerProps) => {
   }, []);
 
   useEffect(() => {
-    if (myInfo.trackedQuests !== undefined) {
-      setQuestifyCount(myInfo.trackedQuests);
-      setTetrisCount(myInfo.tetris.trackedQuests);
+    if (myInfo.achievedQuests?.questify !== undefined) {
+      setQuestifyCount(myInfo.achievedQuests?.questify);
+      setTetrisCount(myInfo.achievedQuests?.tetris);
     }
   }, [myInfo]);
 
@@ -106,13 +106,14 @@ const QuestBanner = (props: QuestBannerProps) => {
         if (i < 4) {
           myInfo?.receivedQuests[i] == 1
             ? (statusArray[i] = 2)
-            : myInfo?.trackedQuests[i] == QUESTIFY_QUESTS[i].untilClaim
+            : myInfo?.achievedQuests?.questify[i] ==
+              QUESTIFY_QUESTS[i].untilClaim
             ? (statusArray[i] = 1)
             : (statusArray[i] = 0);
         } else
           myInfo.tetris?.receivedQuests[i - 4] == 1
             ? (statusArray[i] = 2)
-            : myInfo.tetris?.trackedQuests[i - 4] ==
+            : myInfo.tetris?.achievedQuests?.questify[i - 4] ==
               QUESTIFY_QUESTS[i].untilClaim
             ? (statusArray[i] = 1)
             : (statusArray[i] = 0);
@@ -166,7 +167,7 @@ const QuestBanner = (props: QuestBannerProps) => {
 
         <div className="flex flex-row justify-center items-center content-center pt-4 mb-4">
           <div className={isSmallDevice ? "block" : "flex"}>
-            <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 custom-2xl:grid-cols-4 xl:gap-6 gap-3 mb-8 justify-between">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 custom-2xl:grid-cols-4 2xl:gap-6 gap-2 mb-8 justify-between">
               {props.id == 0 &&
                 QUESTIFY_QUESTS.slice(0, 4).map((quest, index) => (
                   <div>
@@ -192,7 +193,7 @@ const QuestBanner = (props: QuestBannerProps) => {
               className={
                 isSmallDevice
                   ? "flex justify-center"
-                  : "min-w-[250px] flex justify-end items-center"
+                  : "xl:min-w-[210px] 2xl:min-w-[240px] flex justify-end items-center"
               }
             >
               {/* <div className="w-[100] flex">asdfasdf</div> */}
@@ -206,6 +207,7 @@ const QuestBanner = (props: QuestBannerProps) => {
             </div>
           </div>
         </div>
+
         {/* <Modal open={modalOpen} onClose={handleClose}>
           <Card sx={stylex}>
             <CardMedia

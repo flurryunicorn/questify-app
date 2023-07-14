@@ -1,3 +1,5 @@
+import { fontFamily } from '@mui/system';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -46,7 +48,8 @@ export default {
         'lg' : '1024px',
         'xl' : '1280px',
         'custom-2xl' : '1680px'
-      }
+      },
+
     },
   },
   plugins: [],

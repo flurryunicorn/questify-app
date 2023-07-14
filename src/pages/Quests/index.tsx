@@ -39,7 +39,7 @@ const Quests = () => {
   return (
     <div>
       <div
-        className="lg:gap-[30px] gap-[5px] ml-[5px] lg:ml-[20px] xl:ml-[50px] 2xl:ml-[100px] lg:mr-[20px] lg:mt-[100px] md:mt-[100px] sm:mt-[100px] mr-[10px] mt-[50px]
+        className="lg:gap-[30px] gap-[5px] ml-[5px] lg:ml-[10px] xl:ml-[20px] 2xl:ml-[100px] lg:mr-[20px] lg:mt-[100px] md:mt-[100px] sm:mt-[100px] mr-[10px] mt-[50px]
       text-gray-200"
       >
         <Grid
@@ -47,7 +47,7 @@ const Quests = () => {
           spacing={0}
           columns={{ xl: 12, lg: 12, md: 12, sm: 4, xs: 4 }}
         >
-          <Grid item xl={8} lg={8} md={8} sm={4} xs={4}>
+          <Grid item xl={9} lg={9} md={8} sm={4} xs={4}>
             <GeneralPanel>
               <QuestBanner
                 title="Questify Quests"
@@ -63,7 +63,7 @@ const Quests = () => {
               />
             </GeneralPanel>
           </Grid>
-          <Grid item xl={3} lg={4} md={4} sm={4} xs={4}>
+          <Grid item xl={3} lg={3} md={4} sm={4} xs={4}>
             <GeneralPanel>
               <QuestLeaderboard />
               {/* <QuestProgress /> */}

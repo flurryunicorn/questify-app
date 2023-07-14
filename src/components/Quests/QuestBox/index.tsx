@@ -65,7 +65,7 @@ const QuestBox = (props: QuestBoxType) => {
   return (
     <BorderPanel>
       <div
-        className={`w-[180px] col-span-1 rounded-2xl  flex flex-col justify-between cursor-pointer
+        className={`w-[170px] col-span-1 rounded-2xl  flex flex-col justify-between cursor-pointer
         ${
           activeState === 2
             ? "active_card"
@@ -86,7 +86,7 @@ const QuestBox = (props: QuestBoxType) => {
         <div className="relative flex justify-between w-full border-b px-6 py-2 border-[#132236] rounded-t-2xl bg-gradient-to-b from-transparent to-black-70 backdrop-blur">
           {props.title}
         </div>
-        <div className="px-[15px] py-[8px] flex flex-col justify-between bg-[#040A12] rounded-b-2xl">
+        <div className="px-2 py-3 flex flex-col justify-between bg-[#040A12] rounded-b-2xl">
           <div className="text-[#F3F3F3] text-[13px] mb-4">
             {props.untilClaim}/{props.untilClaim}:&nbsp;
             <span className="text-[#929298]">
@@ -108,7 +108,10 @@ const QuestBox = (props: QuestBoxType) => {
                     width={16}
                     height={16}
                   />
-                  <div className="text-[#F3F3F3] text-[16px]">
+                  <div
+                    className="text-[#F3F3F3] text-[16px]"
+                    style={{ fontFamily: "PlusJakartaText" }}
+                  >
                     {props.amount}
                   </div>
                 </div>
