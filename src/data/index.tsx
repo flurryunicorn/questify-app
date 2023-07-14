@@ -390,7 +390,7 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     description: "Login EveryDay to complete",
     avatar: "/images/quests/avatars/discord.png",
     icon: "/images/quests/xp.png",
-    amount: 300,
+    amount: 50,
     thumbnail: "/images/quests/solarity-quests/solarity-discord.png",
     fullDescription: "This is Daily Quest. Check and play everyday!!!",
     untilClaim: 1,
@@ -402,7 +402,7 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     description: "Login Everyday for a week to complete",
     avatar: "/images/social/twitter.png",
     icon: "/images/quests/xp.png",
-    amount: 50,
+    amount: 300,
     thumbnail: "/images/quests/solarity-quests/mint-room.png",
     fullDescription:
       "Login the site eacy days for 5 days Consecutively. Try!!!",
@@ -415,7 +415,7 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     description: "Deposit some Sei in your Questify Balance",
     avatar: "/images/social/twitter.png",
     icon: "/images/quests/xp.png",
-    amount: 200,
+    amount: 50,
     thumbnail: "/images/quests/solarity-quests/mint-room.png",
     fullDescription:
       "Deposit more than 5 times, then you can claim your quests",
@@ -442,7 +442,7 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     description: "Play 1 game of Tetrisk at any level",
     avatar: "/images/social/twitter.png",
     icon: "/images/quests/xp.png",
-    amount: 200,
+    amount: 50,
     thumbnail: "/images/quests/solarity-quests/mint-room.png",
     fullDescription: "Play the game everyday and you could claim your quests.",
     untilClaim: 1,
@@ -458,7 +458,7 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     thumbnail: "/images/quests/solarity-quests/mint-room.png",
     fullDescription:
       "Play the game 5 days consecutively to claim your quests. Try!!!",
-    untilClaim: 5,
+    untilClaim: 7,
   },
   {
     index: 7,
@@ -495,7 +495,7 @@ export const QUESTIFY_QUESTS: QuestBoxType[] = [
     amount: 200,
     thumbnail: "/images/quests/solarity-quests/prompt.png",
     fullDescription: "Win more than 5 times and cliam your quests. Try!!!",
-    untilClaim: 5,
+    untilClaim: 1,
   },
   {
     index: 10,

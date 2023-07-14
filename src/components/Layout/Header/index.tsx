@@ -90,6 +90,10 @@ const Header = () => {
     balance: state.tetris.balance,
   }));
 
+  const { myXP } = useSelector((state: any) => ({
+    myXP: state.tetris.myXP,
+  }));
+
   useEffect(() => {
     localStorage.setItem("betAmount", betAmount);
   }, [betAmount]);
@@ -150,16 +154,20 @@ const Header = () => {
       return;
     }
     setSending(true);
-    const fee = calculateFee(150000, GasPrice.fromString("3750usei"));
+    const fee = calculateFee(300, GasPrice.fromString("3750usei"));
     const transferAmount = { amount: (amount * 1e6).toString(), denom: "usei" };
 
     try {
+      console.log("SIG: ", signingClient);
       const sendResponse = await signingClient.sendTokens(
         accounts[0].address,
         "sei10cs7ddu93ge6kwfllm24cm20h4j4vx00sfaqh7",
         [transferAmount],
         fee
       );
+
+      console.log("😁", sendResponse);
+      console.log(sendResponse.transactionHash);
       // console.log("sendResponse", sendResponse);
       if (sendResponse.transactionHash) {
         localStorage.setItem("txHash", sendResponse.transactionHash);
@@ -178,9 +186,9 @@ const Header = () => {
           console.log("👍", result.data);
           console.log("QQQ", QUESTIFY_QUESTS[2].untilClaim);
           if (
-            (resValue.receivedQuests[2] == 0 &&
+            (resValue.claimedQuests.questify[2] == 0 &&
               resValue.achievedQuests.questify[2] >= num1) ||
-            (resValue.receivedQuests[3] == 0 &&
+            (resValue.claimedQuests.questify[3] == 0 &&
               resValue.achievedQuests.questify[3] >= num2)
           )
             toast.info("Check the Quests!");
@@ -211,7 +219,10 @@ const Header = () => {
       // console.log("Error occurred in sending token", err);
       localStorage.removeItem("txHash");
       setSending(false);
+      setModalOpen(false);
+      setClaimLoading(false);
       toast.error("Backend Error!");
+      console.log("💣 Backend Error");
       return false;
     }
   };
@@ -312,22 +323,36 @@ const Header = () => {
         >
           <div className="flex flex-row items-center md:justify-end sm:justify-end">
             {connected && (
-              <div
-                className="pr-2 h-[35px] rounded-lg flex justify-center items-center 
-		            text-[#929298] text-lg cursor-pointer m-4 border border-[#14B8A6] hover:text-white "
-                onClick={handleOpen}
-              >
-                <img
-                  src="/images/logo2.png"
-                  className="mx-[6px] w-[20px] h-[20px]"
-                />
-                <p className="sm:text-[12px] text-[10px] flex items-center">
-                  {Math.floor(Number(balance) * 10000) / 10000}
-                </p>
+              <div className="flex flex-row">
+                <div
+                  className="pr-2 h-[35px] rounded-lg flex justify-center items-center 
+		            text-[#929298] text-lg cursor-pointer mt-4 mr-2 border border-[#14B8A6] hover:text-white "
+                  onClick={handleOpen}
+                >
+                  <img
+                    src="/images/logo2.png"
+                    className="mx-[6px] w-[20px] h-[20px]"
+                  />
+                  <p className="sm:text-[12px] text-[10px] flex items-center">
+                    {Math.floor(Number(balance) * 10000) / 10000}
+                  </p>
+                </div>
+                <div
+                  className="pr-2 h-[35px] rounded-lg flex justify-center items-center 
+		            text-[#929298] text-lg cursor-pointer my-4 mr-2 border border-[#14B8A6] hover:text-white "
+                >
+                  <img
+                    src="/images/logos/xp.png"
+                    className="mx-[6px] w-[20px] h-[20px]"
+                  />
+                  <p className="sm:text-[12px] text-[10px] flex items-center">
+                    {Math.floor(Number(myXP))}
+                  </p>
+                </div>
               </div>
             )}
 
-            <div className="flex wallet-adapter-button justify-end items-center mr-4">
+            <div className="flex wallet-adapter-button justify-end items-center mr-2">
               {connectedWallet != ("keplr" as WalletWindowKey) ? (
                 <div className="flex items-center justify-center ">
                   <div
@@ -529,11 +554,14 @@ const Header = () => {
                           setSending(false);
                           handleClose();
                           toast.info("Withdraw succeed");
+                          setClaimLoading(false);
                         } catch (err) {
                           // console.log(err);
                           setSending(false);
-                          toast.warn("Backend Error!");
+                          setModalOpen(false);
                           setClaimLoading(false);
+                          toast.warn("Backend Error!");
+                          console.log("💣 Backend Error");
                           return;
                         }
                       }}
