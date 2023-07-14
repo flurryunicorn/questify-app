@@ -165,10 +165,9 @@ const Header = () => {
         localStorage.setItem("txHash", sendResponse.transactionHash);
 
         try {
-          const result = await apiCaller.post("token/deposit", {
+          const result = await apiCaller.post("tokens/deposit", {
             wallet: accounts[0].address,
             txHash: sendResponse.transactionHash,
-            amount: amount,
           });
 
           // if result.data.
@@ -180,9 +179,9 @@ const Header = () => {
           console.log("QQQ", QUESTIFY_QUESTS[2].untilClaim);
           if (
             (resValue.receivedQuests[2] == 0 &&
-              resValue.trackedQuests[2] >= num1) ||
+              resValue.achievedQuests.questify[2] >= num1) ||
             (resValue.receivedQuests[3] == 0 &&
-              resValue.trackedQuests[3] >= num2)
+              resValue.achievedQuests.questify[3] >= num2)
           )
             toast.info("Check the Quests!");
           console.log("QQQsss");
@@ -519,9 +518,9 @@ const Header = () => {
 
                         try {
                           const result = await apiCaller.post(
-                            "token/withdraw",
+                            "tokens/withdraw",
                             {
-                              walletAddress: accounts[0].address,
+                              wallet: accounts[0].address,
                               amount: withdrawAmount,
                             }
                           );
