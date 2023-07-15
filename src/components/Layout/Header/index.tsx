@@ -25,11 +25,8 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button, IconButton } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { CircularProgress } from "@mui/material";
 
@@ -388,59 +385,6 @@ const Header = () => {
                 </div>
               )}
             </div>
-
-            {isSmallDevice && (
-              <div className="flex flex-row items-center md:justify-end sm:justify-end">
-                <div
-                  className="h-[35px] w-[30px] rounded-lg flex justify-center items-center 
-		                      text-[#929298] text-lg cursor-pointer mr-2 border border-[#14B8A6] hover:text-white "
-                >
-                  <Button
-                    sx={{ border: "ThreeDDarkShadow" }}
-                    variant="text"
-                    onClick={handleClick}
-                  >
-                    <img
-                      src="/images/3-dot-icon-0.png"
-                      className="mx-[6px] w-[30px] h-[30px]"
-                    />
-                  </Button>
-                </div>
-
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={openDropDown}
-                  onClose={handleCloseDropDown}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
-                  }}
-                >
-                  <MenuItem
-                    onClick={() => {
-                      navigate("/");
-                    }}
-                  >
-                    Explore
-                  </MenuItem>
-
-                  <MenuItem
-                    onClick={() => {
-                      navigate("/quests");
-                    }}
-                  >
-                    Quests
-                  </MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      navigate("/games");
-                    }}
-                  >
-                    Games
-                  </MenuItem>
-                </Menu>
-              </div>
-            )}
 
             <Modal open={depositModalOpen} onClose={handleClose}>
               <Box sx={modalStyle}>

@@ -7,6 +7,9 @@ import { QuestBoxType } from "../components/Quests/QuestBox";
 import { GameContentType } from "../pages/Games";
 import { BettingBannerType } from "../components/Betting/BettingBanner";
 import { ClaimBoxType } from "../components/Quests/ClaimBox";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import HomeIcon from "@mui/icons-material/Home";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 export const LEADERBOARD_SUB_MENUITEMS: BorderMenuItemProps[] = [
   {
@@ -298,14 +301,17 @@ export const HeaderMenuTitles = [
   {
     name: "Explore",
     link: "/",
+    content: <HomeIcon />,
   },
   {
     name: "Quests",
     link: "/quests",
+    content: <EmojiEventsIcon />,
   },
   {
     name: "Games",
     link: "/games",
+    content: <SportsEsportsIcon />,
   },
 ];
 

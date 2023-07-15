@@ -39,8 +39,8 @@ const Quests = () => {
   return (
     <div>
       <div
-        className="lg:gap-[30px] gap-[5px] ml-[5px] lg:ml-[10px] xl:ml-[20px] 2xl:ml-[100px] lg:mr-[20px] lg:mt-[100px] md:mt-[100px] sm:mt-[100px] mr-[10px] mt-[50px]
-      text-gray-200"
+        className="lg:gap-[30px] gap-1 ml-[0px] lg:ml-[10px] xl:ml-[20px] 2xl:ml-[100px] 
+         sm:mt-[100px] mt-[50px] lg:mr-[20px] mr-[0px] mb-[80px] text-gray-200"
       >
         <Grid
           container
