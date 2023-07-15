@@ -109,7 +109,7 @@ const Betting = () => {
   ));
 
   return (
-    <div className="lg:gap-[30px] gap-[5px] 2xl:ml-[100px] xl:ml-[50px] lg:ml-[20px] ml-[5px]  lg:mr-[20px] sm:mt-[100px] mr-[10px] mt-[80px] text-gray-200">
+    <div className="lg:gap-[30px] gap-[5px] 2xl:ml-[100px] xl:ml-[50px] lg:ml-[20px] ml-[5px]  lg:mr-[20px] sm:mt-[100px] mr-[10px] mt-[80px] mb-[80px] text-gray-200">
       <Grid
         container
         spacing={0}

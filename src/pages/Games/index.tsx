@@ -45,7 +45,7 @@ const Games = () => {
   return (
     <div
       className="lg:gap-[30px] gap-[5px] ml-[5px] lg:ml-[20px] xl:ml-[50px] 2xl:ml-[100px] lg:mr-[20px] lg:mt-[100px] md:mt-[100px] sm:mt-[100px]  mt-[100px] mr-[00px]
-  text-gray-200"
+  text-gray-200 mb-[100px]"
     >
       <div className="mx-2">
         <div className="text-white font-bold text-[25px] mt-5 mb-2">

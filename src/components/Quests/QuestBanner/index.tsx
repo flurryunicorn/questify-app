@@ -137,7 +137,13 @@ const QuestBanner = (props: QuestBannerProps) => {
 
         <div className="flex flex-row justify-center items-center content-center pt-4 mb-4">
           <div className={isSmallDevice ? "block" : "flex"}>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 custom-2xl:grid-cols-4 2xl:gap-6 gap-2 mb-8 justify-between">
+            <div
+              className={
+                isSmallDevice
+                  ? "flex flex-col justify-center mb-8 ml-[10px]"
+                  : "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 custom-2xl:grid-cols-4 2xl:gap-6 gap-1 mb-8 justify-between"
+              }
+            >
               {props.id == 0 &&
                 QUESTIFY_QUESTS.slice(0, 4).map((quest, index) => (
                   <div>
@@ -162,7 +168,7 @@ const QuestBanner = (props: QuestBannerProps) => {
             <div
               className={
                 isSmallDevice
-                  ? "flex justify-center"
+                  ? "flex justify-center items-center"
                   : "xl:min-w-[210px] 2xl:min-w-[240px] flex justify-end items-center"
               }
             >

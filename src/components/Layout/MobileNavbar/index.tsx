@@ -11,7 +11,9 @@ const CustomLink: React.FC<CustomLinkProps> = ({ active, ...props }) => {
     <Link
       {...props}
       className={`cursor-pointer hover:text-primary ${
-        active ? "text-primary" : "text-white"
+        active
+          ? "bg-gradient-to-r from-cyan-300 text-transparent to-emerald-300"
+          : "text-white"
       }`}
     />
   );
@@ -28,8 +30,8 @@ const MobileNavbar: React.FC = () => {
 
   return (
     <div
-      className="fixed bottom-0 w-full border-t-[2px] p-[14px] py-[15px] px-5 
-      border-[#132236] bg-[#071018] flex justify-between"
+      className="fixed bottom-0 w-full border-t-[2px] p-[14px] py-[10px] px-5 
+      border-[#132236] bg-[#071018] flex justify-between text-xl"
     >
       {HeaderMenuTitles.map((item, index) => (
         <CustomLink
@@ -37,7 +39,7 @@ const MobileNavbar: React.FC = () => {
           active={currentPath === item.link}
           key={index}
         >
-          {item.name}
+          {item.content}
         </CustomLink>
       ))}
     </div>

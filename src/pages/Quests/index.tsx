@@ -40,8 +40,7 @@ const Quests = () => {
     <div>
       <div
         className="lg:gap-[30px] gap-1 ml-[0px] lg:ml-[10px] xl:ml-[20px] 2xl:ml-[100px] 
-         sm:mt-[100px] mt-[50px] lg:mr-[20px] mr-[0px] 
-      text-gray-200"
+         sm:mt-[100px] mt-[50px] lg:mr-[20px] mr-[0px] mb-[80px] text-gray-200"
       >
         <Grid
           container

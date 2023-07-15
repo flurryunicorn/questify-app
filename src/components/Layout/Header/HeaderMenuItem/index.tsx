@@ -30,7 +30,8 @@ const HeaderMenuItem = (props: HeaderMenuItemProps) => {
                   font-bold bg-gradient-to-r from-emerald-300 text-transparent to-cyan-300 bg-clip-text text-[16px] animate-gradient-x 
                   sm:mr-5 custom-2xl:mr-10 xl:mr-5 lg:mr-10 font-500  justify-center items-center 
                   ${props.active ? "text-[#29B080]" : "text-[#929298]"} 
-                  h-full cursor-pointer hover:text-[#29B080] select-none`}
+                  h-full cursor-pointer select-none
+                  hover:text-gradient-to-r hover:from-indigo-500 hover:from-10% hover:via-sky-500 hover:via-30% hover:to-emerald-500 hover:to-90%`}
     >
       <div className={`absolute top-[0] ${props.active ? "block" : "hidden"}`}>
         <svg
