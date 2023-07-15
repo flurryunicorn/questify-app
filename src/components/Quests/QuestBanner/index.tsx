@@ -102,7 +102,6 @@ const QuestBanner = (props: QuestBannerProps) => {
     } catch (error) {}
   }, [myInfo]);
 
-  console.log("😁😍💣😊😂🤣❤️👍", questStatus);
   return (
     <div className="w-full">
       <BorderPanel>
